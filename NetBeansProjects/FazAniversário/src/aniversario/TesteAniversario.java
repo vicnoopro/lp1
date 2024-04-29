@@ -16,13 +16,12 @@ public class TesteAniversario {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         
-        FazAniversario pessoa = new FazAniversario();
-        
+               
         
         System.out.println("Insira a sua idade atual: ");
         int idade = entrada.nextInt();
-        pessoa.setIdade(idade);
         
+        FazAniversario pessoa = new FazAniversario(idade);
         pessoa.FazAniversario(1);
     }
     

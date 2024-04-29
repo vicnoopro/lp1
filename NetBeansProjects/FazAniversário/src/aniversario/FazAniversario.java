@@ -13,6 +13,12 @@ public class FazAniversario {
     
     private int idade, nova;
 
+    public FazAniversario(int idade) {
+        this.idade = idade;
+    }
+    
+    
+
     public int getIdade() {
         return idade;
     }
