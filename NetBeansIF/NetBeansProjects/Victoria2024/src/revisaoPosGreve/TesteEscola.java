@@ -21,7 +21,7 @@ public class TesteEscola {
         System.out.println("_____________________________");
 
         System.out.println("Insira o nome do professor: ");
-        String nomeProfessor = entrada.next();
+        String nomeProfessor = entrada.nextLine();
         objProfessor.setNome(nomeProfessor);
         System.out.println("CPF: ");
         String cpf1 = entrada.next();
