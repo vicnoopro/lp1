@@ -44,7 +44,7 @@ public class TesteEscola {
         String turma = entrada.next();
         objTurma.setTurma(turma);
 
-        System.out.println("______________________-______");
+        System.out.println("____________________________");
         
         System.out.println("Insira a nota 1: ");
         double nota1 = entrada.nextDouble();
