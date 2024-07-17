@@ -31,6 +31,9 @@ public class Teste {
         registra.AulaPratica(p);
         registra.AulaTeorica(t);
         
+        Carteira carteira = new Carteira();
+        carteira.emissao(c);
+        
         
     }
 }

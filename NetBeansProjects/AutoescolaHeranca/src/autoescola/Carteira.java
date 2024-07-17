@@ -56,12 +56,12 @@ public class Carteira {
         this.aprovado = aprovado;
     }
     
-   public void emissao() {
+   public void emissao(Pessoa p) {
         
         System.out.println("_________________________________________________________");
         System.out.println("Nome da AutoEscola: "+objAutoescola.getNome()+" Situada na cidade: "+objAutoescola.getCidade());
         System.out.println("Endereço: "+objAutoescola.getEndereco());
-        System.out.println("Nome do cliente: "+objCliente.getNome()+" CPF: "+objCliente.getCpf_cliente());
+        System.out.println("Nome do cliente: "+p.getNome()+" CPF: "+p.getCpf());
         System.out.println("Carteira desejada: "+this.getTipo_carteira());
         
         System.out.println("Instrutor responsável: "+objInstrutor.getNome_instrutor()+" Possui carteira tipo: "+objInstrutor.getTipoCarteira());
