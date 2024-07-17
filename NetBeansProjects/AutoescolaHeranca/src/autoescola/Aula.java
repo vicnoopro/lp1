@@ -9,7 +9,7 @@ package autoescola;
  *
  * @author victo
  */
-public class Aula {
+abstract class Aula {
     
     private double valor_aula;
 

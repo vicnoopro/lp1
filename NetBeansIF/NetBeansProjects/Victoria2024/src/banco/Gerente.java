@@ -16,7 +16,6 @@ public class Gerente extends Funcionario {
         super(salario);
     }
 
-    
     private int senha, nfuncCad;
 
     public int getSenha() {
@@ -35,28 +34,26 @@ public class Gerente extends Funcionario {
         this.nfuncCad = nfuncCad;
     }
 
-    public boolean autentica(int senha) 
-    {
-        if (this.senha == senha) 
-        {
+    public boolean autentica(int senha) {
+        if (this.senha == senha) {
             System.out.println("Acesso Permitido!");
             return true;
-        } 
-        
-        else 
-        {
+        } else {
             System.out.println("Acesso Negado!");
             return false;
         }
 
     }
-    
+
     @Override
-    public double bonificacao()
-    {
-        return super.bonificacao()*0.30;
-    
+    public double bonificacao() {
+        return super.bonificacao() * 0.30;
+
     }
-    
-    
+
+    @Override
+    public double getBonificacao() {
+        return super.getSalario() + 1100;
+    }
+
 }

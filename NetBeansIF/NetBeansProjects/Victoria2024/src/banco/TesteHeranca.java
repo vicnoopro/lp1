@@ -15,11 +15,11 @@ public class TesteHeranca {
 
     public static void main(String[] args) {
 
-        Funcionario objFuncionario = new Funcionario(1000);
+        //Funcionario objFuncionario = new Funcionario(1000); deu erro pois funcionario é abstrato
         Gerente objGerente = new Gerente(1000);
         Supervisor objSupervisor = new Supervisor(1000);
 
-        objFuncionario.setFuncionario("Maria");
+        //objFuncionario.setFuncionario("Maria");deu erro pois funcionario é abstrato
         objGerente.setFuncionario("Pedro");
         objSupervisor.setFuncionario("Carlos");
 
@@ -29,7 +29,7 @@ public class TesteHeranca {
         objGerente.setSenha(123);
 
         //objFuncionario.setSalario(1000);
-        objFuncionario.bonificacao();
+        //objFuncionario.bonificacao();deu erro pois funcionario é abstrato
 
         //objSupervisor.setSalario(1000);
         objSupervisor.bonificacao();
@@ -39,7 +39,7 @@ public class TesteHeranca {
         objGerente.autentica(145);
         objGerente.mostra();
         objSupervisor.mostra();
-        objFuncionario.mostra();
+        //objFuncionario.mostra();
 
     }
 }

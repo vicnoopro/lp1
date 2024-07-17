@@ -9,21 +9,16 @@ package banco;
  *
  * @author 13826640608
  */
-public class Supervisor extends Funcionario {
+public class Secretaria extends Funcionario {
 
-    public Supervisor(double salario) {
+    public Secretaria(double salario) {
         super(salario);
-    }
-
-    @Override
-    public double bonificacao() {
-        return super.bonificacao() * 0.15;
     }
 
     @Override
     public double getBonificacao() {
 
-        return super.getSalario() + 700;
+        return super.getSalario();
     }
 
 }
