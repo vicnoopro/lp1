@@ -9,7 +9,7 @@ package autoescola;
  *
  * @author victo
  */
-public class Pessoa {
+abstract class Pessoa {
     
     private String nome, cpf;
 

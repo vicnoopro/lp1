@@ -9,17 +9,17 @@ package banco;
  *
  * @author Juliana
  */
-public class Funcionario {
-    
+abstract class Funcionario {
+
     private String funcionario, departamento, data;
     private double salario;
     private String rg;
-    private boolean ativo=true;
+    private boolean ativo = true;
 
     public Funcionario(double salario) {
         this.salario = salario;
     }
-    
+
     //getters e setters liberam o uso das variaveis daqui na classe de teste
     public String getFuncionario() {
         return funcionario;
@@ -68,45 +68,31 @@ public class Funcionario {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    public void bonifica(double valorBeneficio) {
-	setSalario(getSalario() + valorBeneficio);
 
-}
+    public void bonifica(double valorBeneficio) {
+        setSalario(getSalario() + valorBeneficio);
+
+    }
 
     public void demite() {
         this.ativo = false;
-}
-    public double bonificacao()
-    {
-        return this.getSalario()*0.1;
     }
-    
-   private double totalDeBonificacoes = 0;
-  
-       
-   public void registra(Funcionario f1){
-    this.totalDeBonificacoes += f1.bonificacao();
-       
-}
-   
-    public double TotalDeBonificacoes() {
-        
-        System.out.println("Total de bonificações: "+this.totalDeBonificacoes);
-        return this.totalDeBonificacoes;
+
+    public double bonificacao() {
+        return this.getSalario() * 0.1;
     }
-    
-    public void mostra(){
-        System.out.println("Nome: "+this.getFuncionario());
-        System.out.println("Departamento:"+this.getDepartamento());
-        System.out.println("Salário: R$"+this.getSalario());
-        System.out.println("Data de entrada: "+this.getData());
-        System.out.println("RG: "+this.getRg());
-        System.out.println("Ativo? "+(this.isAtivo()== true?"Sim":"Não"));
-        System.out.println("Bonificação: "+this.getSalario());
+
+    public void mostra() {
+        System.out.println("Nome: " + this.getFuncionario());
+        System.out.println("Departamento:" + this.getDepartamento());
+        System.out.println("Salário: R$" + this.getSalario());
+        System.out.println("Data de entrada: " + this.getData());
+        System.out.println("RG: " + this.getRg());
+        System.out.println("Ativo? " + (this.isAtivo() == true ? "Sim" : "Não"));
+        System.out.println("Bonificação: " + this.getSalario());
         System.out.println("-------------------------------------");
     }
 
+    public abstract double getBonificacao();
 
-    
 }

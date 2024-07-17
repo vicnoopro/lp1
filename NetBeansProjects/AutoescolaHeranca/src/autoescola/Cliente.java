@@ -10,5 +10,5 @@ package autoescola;
  * @author victo
  */
 public class Cliente extends Pessoa {
-    
-}
+      
+} 
