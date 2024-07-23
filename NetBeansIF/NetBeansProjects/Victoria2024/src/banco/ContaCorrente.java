@@ -9,7 +9,7 @@ package banco;
  *
  * @author 13826640608
  */
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements Tributavel {
 
     public ContaCorrente() {
     }
@@ -22,7 +22,13 @@ public class ContaCorrente extends Conta {
     @Override
     public void deposita(double quantidade) {//dentro do () insere o valor no código
         super.deposita(super.getSaldo() + (quantidade));//soma o saldo com o depósito
-       // System.out.println("Saldo conta corrente: " + super.getSaldo());
+        // System.out.println("Saldo conta corrente: " + super.getSaldo());
+    }
+
+    @Override
+    public double CalculaTributos() {
+
+        return this.getSaldo() * 0.01;
     }
 
 }
