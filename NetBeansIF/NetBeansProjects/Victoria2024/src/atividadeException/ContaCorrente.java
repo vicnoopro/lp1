@@ -9,17 +9,15 @@ package atividadeException;
  *
  * @author 13826640608
  */
-public class ContaCorrente extends Conta{
-    
-   @Override
-   void deposita(double valor) {
-    if (valor <0){
-    throw new IllegalArgumentException();
+public class ContaCorrente extends Conta {
+
+    @Override
+    void deposita(double valor) {
+        if (valor < 0) {
+            throw new IllegalArgumentException();
+        } else {
+            this.saldo += valor - 0.10;
+        }
     }
-    else {
-    this.saldo += valor - 0.10;
-    }
-    }
-    
-    
+
 }
