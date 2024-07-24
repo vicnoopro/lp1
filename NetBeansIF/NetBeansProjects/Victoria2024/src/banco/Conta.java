@@ -47,7 +47,7 @@ public class Conta {
         this.limite = limite;
     }
 
-    public boolean saca(double quantidade)//dentro do () insere o valor no código
+    public boolean saca(double quantidade)//dentro do () insere o valor a ser sacado no código
     {
         if (this.getSaldo() >= quantidade) {
             this.saldo = this.saldo - quantidade;//subtrai do saldo o saque
