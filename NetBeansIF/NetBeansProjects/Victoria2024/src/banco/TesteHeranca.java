@@ -13,6 +13,7 @@ import java.util.Scanner;
  */
 public class TesteHeranca {
 
+    
     public static void main(String[] args) {
 
         //Funcionario objFuncionario = new Funcionario(1000); deu erro pois funcionario é abstrato
