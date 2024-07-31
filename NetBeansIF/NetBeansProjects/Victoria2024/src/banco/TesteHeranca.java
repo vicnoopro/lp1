@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author 13826640608
  */
 public class TesteHeranca {
-
+ 
     
     public static void main(String[] args) {
 
