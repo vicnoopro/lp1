@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="teste">
+  <ClassDiagramComponents>
+    <Class name="Funcionario" package="uml" visibility="public" isAbstract="true" xPosition="729.0" yPosition="46.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="CPF" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="relatorio" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Gerente" package="uml" visibility="public" xPosition="608.0" yPosition="266.0">
+      <Fields>
+        <Field name="funcionariosGerenciados" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="uml.Gerente" target="uml.Funcionario"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
