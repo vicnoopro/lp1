@@ -19,17 +19,33 @@ public class TesteFaculdade {
         
          
          System.out.println("Insira o nome do aluno: ");
-         String nome = entrada.next();
+         String nomeA = entrada.next();
          System.out.println("Insira o CPF: ");
-         String cpf = entrada.next();
+         String cpfA = entrada.next();
+         System.out.println("Idade: ");
+         int idadeA = entrada.nextInt();
          System.out.println("Insira o número de matrícula:");
          String nMatricula = entrada.next();
+        
          
+         System.out.println("Insira o nome do professor: ");
+         String nomeP = entrada.next();
+         System.out.println("Insira o CPF: ");
+         String cpfP = entrada.next();
          System.out.println("Idade: ");
-         int idade = entrada.nextInt();
+         int idadeP = entrada.nextInt();
+         System.out.println("Insira a matéria lecionada: ");
+         String materiaLecionada = entrada.next();
          
-         Alunos objAluno = new Alunos(nome, cpf, idade, nMatricula);
+         
+         
+         
+         Alunos objAluno = new Alunos(nomeA, cpfA, idadeA, nMatricula);
          objAluno.mostra();
+         
+         Professor objProfessor = new Professor(nomeP, cpfP, idadeP, materiaLecionada);
+         objProfessor.mostra();
+         
        
          
          

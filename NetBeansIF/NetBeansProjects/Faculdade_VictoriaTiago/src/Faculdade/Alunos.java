@@ -30,6 +30,7 @@ public class Alunos extends Pessoa {
     public void mostra() {
         
         System.out.println("Nome do aluno: "+super.getNome()+" CPF: "+super.getCpf());
+        System.out.println("Número de matrícula: "+this.getnMatricula());
         System.out.println("Idade: "+super.getIdade());
         
     }
