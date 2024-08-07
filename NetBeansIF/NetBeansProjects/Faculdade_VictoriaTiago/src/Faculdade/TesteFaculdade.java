@@ -34,7 +34,7 @@ public class TesteFaculdade {
          String cpfP = entrada.next();
          System.out.println("Idade: ");
          int idadeP = entrada.nextInt();
-         System.out.println("Insira a matér ia lecionada: ");
+         System.out.println("Insira a matéria lecionada: ");
          String materiaLecionada = entrada.next();
          
          
