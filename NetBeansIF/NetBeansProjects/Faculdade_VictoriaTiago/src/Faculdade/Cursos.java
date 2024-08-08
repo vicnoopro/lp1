@@ -1,6 +1,6 @@
 
 package Faculdade;
-public class Cursos {
+public class Cursos implements InterfaceFaculdade {
     
     private String nomeCurso;
    
@@ -21,7 +21,10 @@ public class Cursos {
         System.out.println("Nome do curso: "+this.nomeCurso);
         System.out.println("Matéria do período: "+objDisciplina.getDisciplina());
     }
-    
-    
-    
+
+    @Override
+    public void listarCursos() {
+      this.nomeCurso=this.getNomeCurso();
+    }
+
 }

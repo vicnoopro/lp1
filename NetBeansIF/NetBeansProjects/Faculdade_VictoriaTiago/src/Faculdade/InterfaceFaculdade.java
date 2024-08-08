@@ -11,6 +11,7 @@ package Faculdade;
  */
 public interface InterfaceFaculdade {
    
+    
     void listarCursos();
 
     
