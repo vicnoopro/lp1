@@ -11,26 +11,32 @@ package Faculdade;
  */
 public class Professor extends Pessoa {
 
-    public Professor(String nome, String cpf, int idade, String materiaLecionada) {
+    public Professor(String nome, String cpf, int idade) {
         super(nome, cpf, idade);
     }
 
-    private String materiaLecionada;
+    private String MateriaLecionada;
+
+    public Professor(String MateriaLecionada, String nome, String cpf, int idade) {
+        super(nome, cpf, idade);
+        this.MateriaLecionada = MateriaLecionada;
+    }
 
     public String getMateriaLecionada() {
-        return materiaLecionada;
+        return MateriaLecionada;
     }
 
     public void setMateriaLecionada(String materiaLecionada) {
-        this.materiaLecionada = materiaLecionada;
+        this.MateriaLecionada = materiaLecionada;
     }
 
     @Override
     public void mostra() {
 
+        System.out.println("______________________________________________________");
         System.out.println("Nome do professor: " + super.getNome() + " CPF: " + super.getCpf());
         System.out.println("Idade: " + super.getIdade());
-        System.out.println("Matéria lecionada:" + this.getMateriaLecionada());
+        System.out.println("Matéria lecionada: " + this.getMateriaLecionada());
 
     }
 

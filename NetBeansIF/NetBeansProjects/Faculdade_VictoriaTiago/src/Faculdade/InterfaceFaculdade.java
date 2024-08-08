@@ -7,8 +7,13 @@ package Faculdade;
 
 /**
  *
- * @author 13826640608
+ * @author victo
  */
-public class Excecoes {
+public interface InterfaceFaculdade {
+   
+    void listarCursos();
+
     
 }
+    
+

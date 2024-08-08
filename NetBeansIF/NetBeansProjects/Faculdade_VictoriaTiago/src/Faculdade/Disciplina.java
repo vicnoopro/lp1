@@ -11,4 +11,20 @@ package Faculdade;
  */
 public class Disciplina {
     
+   private String disciplina;
+
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+   
+   
+
+    
+   
+    
 }
