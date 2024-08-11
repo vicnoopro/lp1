@@ -11,9 +11,7 @@ package Faculdade;
  */
 public interface InterfaceFaculdade {
    
-    void listarCursos();
-
-    
+    String listarCursos();// método que listará um curso definido 
 }
     
 

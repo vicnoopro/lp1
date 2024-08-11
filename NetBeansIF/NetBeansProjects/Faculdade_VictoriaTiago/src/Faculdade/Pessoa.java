@@ -9,7 +9,7 @@ package Faculdade;
  *
  * @author 13826640608
  */
-public abstract class Pessoa {
+public abstract class Pessoa  {// classe abstrata pois as pessoas estão definidas: aluno e professor
     
     private String nome, cpf;
     private int idade;

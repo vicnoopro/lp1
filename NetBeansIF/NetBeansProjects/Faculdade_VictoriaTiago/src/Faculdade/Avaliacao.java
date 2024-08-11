@@ -16,11 +16,6 @@ public class Avaliacao {
     ;
 
     public Avaliacao() {
-        this.nota1 = nota1;
-        this.nota2 = nota2;
-        this.nota3 = nota3;
-        this.nota4 = nota4;
-        this.mediaNotas = mediaNotas;
     }
 
     public double getNota1() {
@@ -55,7 +50,7 @@ public class Avaliacao {
         this.nota4 = nota4;
     }
 
-    public double getMediaNotas() {
+    public double getMediaNotas() {// calcula média das notas do aluno
 
         this.mediaNotas = (this.nota1 + this.nota2 + this.nota3 + this.nota4) / 4;
         return mediaNotas;

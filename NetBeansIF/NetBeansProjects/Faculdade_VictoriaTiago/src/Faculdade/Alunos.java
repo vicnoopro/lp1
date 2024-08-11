@@ -9,10 +9,10 @@ package Faculdade;
  *
  * @author 13826640608
  */
-public class Alunos extends Pessoa {
+public class Alunos extends Pessoa {// classe filha de pessoa
 
-    public Alunos(String nMatricula, Avaliacao objAvaliacao, String nome, String cpf, int idade) {
-        super(nome, cpf, idade);
+    public Alunos(String nMatricula, Avaliacao objAvaliacao, String nome, String cpf, int idade) {// para a criação de um objeto aluno, esses parâmetros deverão ser passados
+        super(nome, cpf, idade);// vieram da classe pessoa
         this.nMatricula = nMatricula;
         this.objAvaliacao = objAvaliacao;
     }
@@ -30,7 +30,7 @@ public class Alunos extends Pessoa {
     }
 
     @Override
-    public void mostra() {
+    public void mostra() {// método para mostrar dados referente ao aluno
 
         System.out.println("______________________________________________________");
         System.out.println("Nome do aluno: " + super.getNome() + " CPF: " + super.getCpf());
@@ -42,7 +42,7 @@ public class Alunos extends Pessoa {
         System.out.println("Nota 4 do aluno: " + objAvaliacao.getNota4());
         System.out.println("Média de notas: " + objAvaliacao.getMediaNotas());
 
-        if (objAvaliacao.getMediaNotas() >= 6) {
+        if (objAvaliacao.getMediaNotas() >= 6) {// calcula se a média é suficiente ou não para ser aprovado
             System.out.println("Aprovado!");
         } else {
             System.out.println("Reprovado!");

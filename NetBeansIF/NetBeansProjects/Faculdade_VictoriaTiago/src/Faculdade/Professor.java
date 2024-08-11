@@ -9,18 +9,15 @@ package Faculdade;
  *
  * @author 13826640608
  */
-public class Professor extends Pessoa {
+public class Professor extends Pessoa {// classe filha de pessoa
 
-    public Professor(String nome, String cpf, int idade) {
-        super(nome, cpf, idade);
+    public Professor(String nome, String cpf, int idade) {//para a criação de um objeto aluno, esses parâmetros deverão ser passados
+        super(nome, cpf, idade);// vieram da classe pessoa
+        this.MateriaLecionada = MateriaLecionada;
     }
 
     private String MateriaLecionada;
 
-    public Professor(String MateriaLecionada, String nome, String cpf, int idade) {
-        super(nome, cpf, idade);
-        this.MateriaLecionada = MateriaLecionada;
-    }
 
     public String getMateriaLecionada() {
         return MateriaLecionada;
@@ -31,7 +28,7 @@ public class Professor extends Pessoa {
     }
 
     @Override
-    public void mostra() {
+    public void mostra() {// método para mostrar dados referente ao professor
 
         System.out.println("______________________________________________________");
         System.out.println("Nome do professor: " + super.getNome() + " CPF: " + super.getCpf());

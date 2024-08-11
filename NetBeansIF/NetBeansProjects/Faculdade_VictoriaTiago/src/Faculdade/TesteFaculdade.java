@@ -8,9 +8,9 @@ public class TesteFaculdade{
 
         Scanner entrada = new Scanner(System.in);
 
-        Cursos objCurso = new Cursos();
-        Disciplina objDisciplina = new Disciplina();
-        Avaliacao objAvaliacao = new Avaliacao();
+        Cursos objCurso = new Cursos();// criando objetos
+        Disciplina objDisciplina = new Disciplina();// criando objetos
+        Avaliacao objAvaliacao = new Avaliacao();// criando objetos
 
         System.out.println("Insira o nome do curso: ");
         String nomeCurso = entrada.next();
@@ -57,15 +57,18 @@ public class TesteFaculdade{
         System.out.println("Insira a matéria lecionada: ");
         String materiaLecionada = entrada.next();
 
-        objCurso.dadosCurso(nomeCurso, objDisciplina);
+        objCurso.dadosCurso(nomeCurso, objDisciplina);// construtor que obriga a passagem dos parâmetros nomeCurso e objDisciplina
 
-        Professor objProfessor = new Professor(nomeP, cpfP, idadeP);
+        Professor objProfessor = new Professor(nomeP, cpfP, idadeP);// construtor que obriga a passagem dos parâmetros nomeP, cpfP e idadeP
         objProfessor.setMateriaLecionada(materiaLecionada);
-        objProfessor.mostra();
+        objProfessor.mostra();// mostra os dados referentes ao professor
 
-        Alunos objAluno = new Alunos(nMatricula, objAvaliacao, nomeA, cpfA, idadeA);
+        Alunos objAluno = new Alunos(nMatricula, objAvaliacao, nomeA, cpfA, idadeA); // construtor que obriga a passagem dos parâmetros nMatricula, objAvaliacao, nomeA, cpfA e idadeA
         objAluno.setnMatricula(nMatricula);
-        objAluno.mostra();
+        objAluno.mostra();// mostra os dados referentes ao aluno
+        
+       
+        
 
     }
 }
