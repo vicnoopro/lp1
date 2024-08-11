@@ -10,9 +10,8 @@ package Faculdade;
  * @author 13826640608
  */
 public class Disciplina {
-    
-   private String disciplina;
 
+    private String disciplina;
 
     public String getDisciplina() {
         return disciplina;
@@ -21,10 +20,5 @@ public class Disciplina {
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
-   
-   
 
-    
-   
-    
 }

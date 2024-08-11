@@ -10,10 +10,7 @@ package Faculdade;
  * @author victo
  */
 public interface InterfaceFaculdade {
-   
 
     String listarCursos();// método que listará um curso definido 
 
 }
-    
-

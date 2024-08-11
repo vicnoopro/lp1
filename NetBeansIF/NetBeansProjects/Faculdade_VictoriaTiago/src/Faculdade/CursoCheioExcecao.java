@@ -13,8 +13,8 @@ import java.util.Scanner;
  *
  * @author 13826640608
  */
-public class CursoCheioExcecao extends Exception{
-    
+public class CursoCheioExcecao extends Exception {
+
     public static void main(String[] args) {
         try {
             abrirArquivo();// se o arquivo existir aparecerá mensagem de sucesso
@@ -23,7 +23,7 @@ public class CursoCheioExcecao extends Exception{
             System.out.println("Erro ao abrir arquivo." + ex.getMessage());// caso ao contrário dará erro
         }
     }
-    
+
     public static void abrirArquivo() throws FileNotFoundException { //arquivo não foi encontrado
         Scanner entrada = null;
         entrada = new Scanner(new File("d:listade_matriculados"));
@@ -34,5 +34,3 @@ public class CursoCheioExcecao extends Exception{
     }
 
 }
-
-   

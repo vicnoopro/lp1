@@ -18,7 +18,6 @@ public class Professor extends Pessoa {// classe filha de pessoa
 
     private String MateriaLecionada;
 
-
     public String getMateriaLecionada() {
         return MateriaLecionada;
     }
