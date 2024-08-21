@@ -70,7 +70,7 @@ public class TesteFaculdade {
         objCurso.dadosCurso(nomeCurso, objDisciplina);
 
         //Está listando os cursos, no caso 1 pq não usamos vetor
-        objCurso.listarCursos();
+        objCurso.listarCursos();   
 
     }
 }
