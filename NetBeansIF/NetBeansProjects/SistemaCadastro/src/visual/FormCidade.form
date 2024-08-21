@@ -41,7 +41,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="painelNavegacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="painelGuiaAbas" pref="548" max="32767" attributes="0"/>
+              <Component id="painelGuiaAbas" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -286,11 +286,21 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+              <BindingProperties>
+                <BindingProperty name="text" source="tblCidade" sourcePath="${selectedElement.codigo}" target="txtCodigo" targetPath="text" updateStrategy="0" immediately="false">
+                  <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+                </BindingProperty>
+              </BindingProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCidade">
+              <BindingProperties>
+                <BindingProperty name="text" source="tblCidade" sourcePath="${selectedElement.nome}" target="txtCidade" targetPath="text" updateStrategy="0" immediately="false">
+                  <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+                </BindingProperty>
+              </BindingProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCidadeActionPerformed"/>
               </Events>
@@ -329,6 +339,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <BindingProperties>
+                <BindingProperty name="selectedItem" source="tblCidade" sourcePath="${selectedElement.uf}" target="cbxCidade" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
+              </BindingProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxCidadeActionPerformed"/>
               </Events>
