@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Faculdade_VictoriaTiago">
+  <ClassDiagramComponents>
+    <Class name="Alunos" package="Faculdade" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="nMatricula" type="String" visibility="private"/>
+        <Field name="objAvaliacao" type="Avaliacao" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nMatricula"/>
+          <Argument type="Avaliacao" name="objAvaliacao"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="cpf"/>
+          <Argument type="int" name="idade"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getnMatricula" returnType="String" visibility="public"/>
+        <Method name="setnMatricula" returnType="void" visibility="public">
+          <Argument type="String" name="nMatricula"/>
+        </Method>
+        <Method name="mostra" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Avaliacao" package="Faculdade" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="mediaNotas" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getNota1" returnType="double" visibility="public"/>
+        <Method name="setNota1" returnType="void" visibility="public">
+          <Argument type="double" name="nota1"/>
+        </Method>
+        <Method name="getNota2" returnType="double" visibility="public"/>
+        <Method name="setNota2" returnType="void" visibility="public">
+          <Argument type="double" name="nota2"/>
+        </Method>
+        <Method name="getNota3" returnType="double" visibility="public"/>
+        <Method name="setNota3" returnType="void" visibility="public">
+          <Argument type="double" name="nota3"/>
+        </Method>
+        <Method name="getNota4" returnType="double" visibility="public"/>
+        <Method name="setNota4" returnType="void" visibility="public">
+          <Argument type="double" name="nota4"/>
+        </Method>
+        <Method name="getMediaNotas" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="CursoCheioExcecao" package="Faculdade" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="abrirArquivo" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Cursos" package="Faculdade" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="nomeCurso" type="String" visibility="private"/>
+        <Field name="objDisciplina" type="Disciplina" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getNomeCurso" returnType="String" visibility="public"/>
+        <Method name="setNomeCurso" returnType="void" visibility="public">
+          <Argument type="String" name="nomeCurso"/>
+        </Method>
+        <Method name="dadosCurso" returnType="void" visibility="public">
+          <Argument type="String" name="nomeCurso"/>
+          <Argument type="Disciplina" name="objDisciplina"/>
+        </Method>
+        <Method name="listarCursos" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Disciplina" package="Faculdade" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="disciplina" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getDisciplina" returnType="String" visibility="public"/>
+        <Method name="setDisciplina" returnType="void" visibility="public">
+          <Argument type="String" name="disciplina"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="InterfaceFaculdade" package="Faculdade" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Methods>
+        <Method name="listarCursos" returnType="String" visibility="package"/>
+      </Methods>
+    </Interface>
+    <Class name="Pessoa" package="Faculdade" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="idade" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="cpf"/>
+          <Argument type="int" name="idade"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getCpf" returnType="String" visibility="public"/>
+        <Method name="setCpf" returnType="void" visibility="public">
+          <Argument type="String" name="cpf"/>
+        </Method>
+        <Method name="getIdade" returnType="int" visibility="public"/>
+        <Method name="setIdade" returnType="void" visibility="public">
+          <Argument type="int" name="idade"/>
+        </Method>
+        <Method name="mostra" returnType="void" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Professor" package="Faculdade" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="MateriaLecionada" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="cpf"/>
+          <Argument type="int" name="idade"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMateriaLecionada" returnType="String" visibility="public"/>
+        <Method name="setMateriaLecionada" returnType="void" visibility="public">
+          <Argument type="String" name="materiaLecionada"/>
+        </Method>
+        <Method name="mostra" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TesteFaculdade" package="Faculdade" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TesteInterface" package="Faculdade" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="Faculdade.Alunos" target="Faculdade.Pessoa"/>
+    <HasRelation name="objDisciplina" source="Faculdade.Cursos" target="Faculdade.Disciplina" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Faculdade.Cursos" target="Faculdade.Disciplina" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Faculdade.Cursos" target="Faculdade.InterfaceFaculdade"/>
+    <IsRelation name="is" source="Faculdade.Professor" target="Faculdade.Pessoa"/>
+    <HasRelation name="objAvaliacao" source="Faculdade.Alunos" target="Faculdade.Avaliacao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
