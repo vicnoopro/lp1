@@ -24,7 +24,7 @@
         <Method name="mostra" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Avaliacao" package="Faculdade" visibility="public" xPosition="320.0" yPosition="20.0">
+    <Class name="Avaliacao" package="Faculdade" visibility="public" xPosition="475.0" yPosition="380.0">
       <Fields>
         <Field name="mediaNotas" type="double" visibility="private"/>
       </Fields>
@@ -51,7 +51,7 @@
         <Method name="getMediaNotas" returnType="double" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="CursoCheioExcecao" package="Faculdade" visibility="public" xPosition="620.0" yPosition="20.0">
+    <Class name="CursoCheioExcecao" package="Faculdade" visibility="public" xPosition="555.0" yPosition="160.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -61,7 +61,7 @@
         <Method name="abrirArquivo" returnType="void" visibility="public" isStatic="true"/>
       </Methods>
     </Class>
-    <Class name="Cursos" package="Faculdade" visibility="public" xPosition="920.0" yPosition="20.0">
+    <Class name="Cursos" package="Faculdade" visibility="public" xPosition="783.0" yPosition="355.0">
       <Fields>
         <Field name="nomeCurso" type="String" visibility="private"/>
         <Field name="objDisciplina" type="Disciplina" visibility="package"/>
@@ -79,7 +79,7 @@
         <Method name="listarCursos" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Disciplina" package="Faculdade" visibility="public" xPosition="1220.0" yPosition="20.0">
+    <Class name="Disciplina" package="Faculdade" visibility="public" xPosition="885.0" yPosition="95.0">
       <Fields>
         <Field name="disciplina" type="String" visibility="private"/>
       </Fields>
@@ -91,12 +91,7 @@
         </Method>
       </Methods>
     </Class>
-    <Interface name="InterfaceFaculdade" package="Faculdade" visibility="public" xPosition="1520.0" yPosition="20.0">
-      <Methods>
-        <Method name="listarCursos" returnType="String" visibility="package"/>
-      </Methods>
-    </Interface>
-    <Class name="Pessoa" package="Faculdade" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="20.0">
+    <Class name="Pessoa" package="Faculdade" visibility="public" isAbstract="true" xPosition="1311.0" yPosition="552.0">
       <Fields>
         <Field name="nome" type="String" visibility="private"/>
         <Field name="idade" type="int" visibility="private"/>
@@ -124,7 +119,7 @@
         <Method name="mostra" returnType="void" visibility="public" isAbstract="true"/>
       </Methods>
     </Class>
-    <Class name="Professor" package="Faculdade" visibility="public" xPosition="2120.0" yPosition="20.0">
+    <Class name="Professor" package="Faculdade" visibility="public" xPosition="679.0" yPosition="783.0">
       <Fields>
         <Field name="MateriaLecionada" type="String" visibility="private"/>
       </Fields>
@@ -152,7 +147,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="TesteInterface" package="Faculdade" visibility="public" xPosition="320.0" yPosition="420.0">
+    <Class name="TesteInterface" package="Faculdade" visibility="public" xPosition="20.0" yPosition="570.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -161,13 +156,18 @@
         </Method>
       </Methods>
     </Class>
+    <Interface name="InterfaceFaculdade" package="Faculdade" visibility="public" xPosition="1311.0" yPosition="281.0">
+      <Methods>
+        <Method name="listarCursos" returnType="String" visibility="package"/>
+      </Methods>
+    </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <IsRelation name="is" source="Faculdade.Alunos" target="Faculdade.Pessoa"/>
-    <HasRelation name="objDisciplina" source="Faculdade.Cursos" target="Faculdade.Disciplina" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="Faculdade.Cursos" target="Faculdade.Disciplina" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Faculdade.Cursos" target="Faculdade.InterfaceFaculdade"/>
-    <IsRelation name="is" source="Faculdade.Professor" target="Faculdade.Pessoa"/>
     <HasRelation name="objAvaliacao" source="Faculdade.Alunos" target="Faculdade.Avaliacao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Faculdade.Cursos" target="Faculdade.Disciplina" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Faculdade.Alunos" target="Faculdade.Pessoa"/>
+    <IsRelation name="is" source="Faculdade.Professor" target="Faculdade.Pessoa"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Faculdade.Cursos" target="Faculdade.InterfaceFaculdade"/>
+    <HasRelation name="objDisciplina" source="Faculdade.Cursos" target="Faculdade.Disciplina" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
