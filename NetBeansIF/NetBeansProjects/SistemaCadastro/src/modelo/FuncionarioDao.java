@@ -9,26 +9,24 @@ import java.util.List;
 
 /**
  *
- * @author 13826640608
+ * @author 12172700606
  */
 public class FuncionarioDao {
-    
-     public List<Funcionario> getLista() {
-
-        return Dados.listaFuncionario;
+     public List<Funcionario> getLista(){
+      return Dados.listaFuncionario;   
     }
-
-    public boolean salvar(Funcionario objFuncionario) {
-        if (objFuncionario.getCodigo() == null) {
-            Integer codigo = Dados.listaFuncionario.size() + 1;
-            objFuncionario.setCodigo(codigo);
-            Dados.listaFuncionario.add(objFuncionario);
-        }
+    
+    public boolean salvar(Funcionario obj){
+        if(obj.getCodigo()==null){
+            Integer codigo = Dados.listaFuncionario.size()+1;
+            obj.setCodigo(codigo);
+            Dados.listaFuncionario.add(obj);
+    }
+    return true;
+}
+    public boolean remover(Funcionario obj){
+        Dados.listaFuncionario.remove(obj);
         return true;
     }
     
-    public boolean remover(Funcionario objFuncionario){
-        Dados.listaFuncionario.remove(objFuncionario);
-        return true;
-    }
 }

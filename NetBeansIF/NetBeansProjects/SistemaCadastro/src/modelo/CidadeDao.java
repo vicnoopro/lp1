@@ -9,26 +9,24 @@ import java.util.List;
 
 /**
  *
- * @author 13826640608
+ * @author 12172700606
  */
-public class CidadeDao {// data access object padrão
-
-    public List<Cidade> getLista() {
-
-        return Dados.listaCidade;
-    }
-
-    public boolean salvar(Cidade objCidade) {
-        if (objCidade.getCodigo() == null) {
-            Integer codigo = Dados.listaCidade.size() + 1;
-            objCidade.setCodigo(codigo);
-            Dados.listaCidade.add(objCidade);
-        }
-        return true;
+public class CidadeDao {    //Data Acess Object padrão
+    
+    public List<Cidade> getLista(){
+      return Dados.listaCidade;   
     }
     
-    public boolean remover(Cidade objCidade){
-        Dados.listaCidade.remove(objCidade);
+    public boolean salvar(Cidade obj){
+        if(obj.getCodigo()==null){
+            Integer codigo = Dados.listaCidade.size()+1;
+            obj.setCodigo(codigo);
+            Dados.listaCidade.add(obj);
+    }
+    return true;
+}
+    public boolean remover(Cidade obj){
+        Dados.listaCidade.remove(obj);
         return true;
     }
 }

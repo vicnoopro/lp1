@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 13826640608
+ * @author 12172700606
  */
 public class FormPrincipal extends javax.swing.JFrame {
 
@@ -73,11 +73,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -90,11 +90,11 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void menuCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCidadeActionPerformed
         // TODO add your handling code here:
-        FormCidade form = new FormCidade(this, true);// this chama desta form e true modal sobre o form principal, não deixa acessar
-        form.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); //não deixa fechar o form pelo x
-        form.setLocationRelativeTo(null);// centro da tela
-        form.setResizable(false);// retira o botão maximizar
-        form.setVisible(true);// vizualisa o form
+        FormCidade form = new FormCidade(this,true); //this chama deste form e true: modal: sobre o form principal, não deixa acessar o form principal
+        form.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);// não deixa fechar o form pelo x
+        form.setLocationRelativeTo(null); //centro da tela
+        form.setResizable(false); //retira o botão maximizar
+        form.setVisible(true); //visualiza o form
     }//GEN-LAST:event_menuCidadeActionPerformed
 
     /**

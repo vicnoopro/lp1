@@ -5,18 +5,15 @@
  */
 package modelo;
 
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
- * @author 13826640608
+ * @author 12172700606
  */
-public class Dados{
-    
+public class Dados {
     public static List<Cidade> listaCidade = new ArrayList<>();
     public static List<Funcionario> listaFuncionario = new ArrayList<>();
-    
     
 }

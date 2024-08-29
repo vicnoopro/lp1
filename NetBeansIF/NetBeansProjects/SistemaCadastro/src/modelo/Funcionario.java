@@ -11,10 +11,9 @@ import java.util.Objects;
 
 /**
  *
- * @author 13826640608
+ * @author 12172700606
  */
-public class Funcionario implements Serializable {
-    
+public class Funcionario implements Serializable{
     private Integer codigo;
     private String nome;
     private Double salario;
@@ -66,8 +65,8 @@ public class Funcionario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.codigo);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
