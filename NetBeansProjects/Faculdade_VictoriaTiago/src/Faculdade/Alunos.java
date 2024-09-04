@@ -10,6 +10,7 @@ package Faculdade;
  * @author 13826640608
  */
 public class Alunos extends Pessoa {// classe filha de pessoa
+    //subcalsse de pessoa, herda atributos e métodos do pai
 
     public Alunos(String nMatricula, Avaliacao objAvaliacao, String nome, String cpf, int idade) {// para a criação de um objeto aluno, esses parâmetros deverão ser passados
         super(nome, cpf, idade);// vieram da classe pessoa

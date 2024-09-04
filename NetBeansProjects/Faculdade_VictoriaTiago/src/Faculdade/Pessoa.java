@@ -10,6 +10,8 @@ package Faculdade;
  * @author 13826640608
  */
 public abstract class Pessoa {// classe abstrata pois as pessoas estão definidas: aluno e professor
+    //superclasse ou classe pai, ela está mais acima na hierarquia e passa seus atributos e métodos pros filhos
+    
 
     private String nome, cpf;
     private int idade;

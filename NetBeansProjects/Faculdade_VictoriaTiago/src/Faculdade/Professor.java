@@ -10,7 +10,8 @@ package Faculdade;
  * @author 13826640608
  */
 public class Professor extends Pessoa {// classe filha de pessoa
-
+//subclasse de pessoa herda atributos e métodos do pai
+    
     public Professor(String nome, String cpf, int idade) {//para a criação de um objeto aluno, esses parâmetros deverão ser passados
         super(nome, cpf, idade);// vieram da classe pessoa
         this.MateriaLecionada = MateriaLecionada;
