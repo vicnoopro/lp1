@@ -16,9 +16,7 @@ public class Porta {
     private double dimensaox, dimensaoy, dimensaoz;
     
     public void abre (){
-        
-        this.aberta=true;
-        
+        this.aberta=true;  
     }
     
      public void fecha (){
@@ -28,8 +26,7 @@ public class Porta {
     }
      
       public void pinta (String cor){
-        
-        this.cor=cor;
+       this.cor=cor;
         
     }
       
