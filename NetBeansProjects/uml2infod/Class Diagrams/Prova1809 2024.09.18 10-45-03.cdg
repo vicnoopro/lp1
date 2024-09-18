@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Prova1809">
+  <ClassDiagramComponents>
+    <Class name="Aviao" package="PassagemAerea" visibility="public" xPosition="1398.0" yPosition="146.0">
+      <Fields>
+        <Field name="idAviao" type="int" visibility="private"/>
+        <Field name="Modelo" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idAviao"/>
+          <Argument type="int" name="capacidade"/>
+          <Argument type="String" name="Modelo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdAviao" returnType="int" visibility="public"/>
+        <Method name="setIdAviao" returnType="void" visibility="public">
+          <Argument type="int" name="idAviao"/>
+        </Method>
+        <Method name="getCapacidade" returnType="int" visibility="public"/>
+        <Method name="setCapacidade" returnType="void" visibility="public">
+          <Argument type="int" name="capacidade"/>
+        </Method>
+        <Method name="getModelo" returnType="String" visibility="public"/>
+        <Method name="setModelo" returnType="void" visibility="public">
+          <Argument type="String" name="Modelo"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="Checked" returnType="void" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Embarcar" package="PassagemAerea" visibility="public" xPosition="79.0" yPosition="13.0">
+      <Fields>
+        <Field name="aviao" type="Aviao" visibility="package"/>
+        <Field name="passageiro" type="Passageiro" visibility="package"/>
+        <Field name="reserva" type="Reserva" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Aviao" name="aviao"/>
+          <Argument type="Passageiro" name="passageiro"/>
+          <Argument type="Reserva" name="reserva"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="Relatorio" returnType="void" visibility="public">
+          <Argument type="Aviao" name="aviao"/>
+          <Argument type="Passageiro" name="passageiro"/>
+          <Argument type="Reserva" name="reserva"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Passageiro" package="PassagemAerea" visibility="public" xPosition="101.0" yPosition="210.0">
+      <Fields>
+        <Field name="idPassageiro" type="int" visibility="private"/>
+        <Field name="nome" type="String" visibility="private"/>
+        <Field name="checkin" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idPassageiro"/>
+          <Argument type="String" name="nome"/>
+          <Argument type="String" name="nacionalidade"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdPassageiro" returnType="int" visibility="public"/>
+        <Method name="setIdPassageiro" returnType="void" visibility="public">
+          <Argument type="int" name="idPassageiro"/>
+        </Method>
+        <Method name="getIdade" returnType="int" visibility="public"/>
+        <Method name="setIdade" returnType="void" visibility="public">
+          <Argument type="int" name="idade"/>
+        </Method>
+        <Method name="getNome" returnType="String" visibility="public"/>
+        <Method name="setNome" returnType="void" visibility="public">
+          <Argument type="String" name="nome"/>
+        </Method>
+        <Method name="getEmail" returnType="String" visibility="public"/>
+        <Method name="setEmail" returnType="void" visibility="public">
+          <Argument type="String" name="email"/>
+        </Method>
+        <Method name="getTelefone" returnType="String" visibility="public"/>
+        <Method name="setTelefone" returnType="void" visibility="public">
+          <Argument type="String" name="telefone"/>
+        </Method>
+        <Method name="getNacionalidade" returnType="String" visibility="public"/>
+        <Method name="setNacionalidade" returnType="void" visibility="public">
+          <Argument type="String" name="nacionalidade"/>
+        </Method>
+        <Method name="FazerCheckin" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Reserva" package="PassagemAerea" visibility="public" xPosition="509.0" yPosition="172.0">
+      <Fields>
+        <Field name="idReserva" type="int" visibility="private"/>
+        <Field name="assento" type="String" visibility="private"/>
+        <Field name="precoTotatl" type="double" visibility="private"/>
+        <Field name="passageiro" type="Passageiro" visibility="package"/>
+        <Field name="voo" type="Voo" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idReserva"/>
+          <Argument type="String" name="assento"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdReserva" returnType="int" visibility="public"/>
+        <Method name="setIdReserva" returnType="void" visibility="public">
+          <Argument type="int" name="idReserva"/>
+        </Method>
+        <Method name="getAssento" returnType="String" visibility="public"/>
+        <Method name="setAssento" returnType="void" visibility="public">
+          <Argument type="String" name="assento"/>
+        </Method>
+        <Method name="getRefeicao" returnType="String" visibility="public"/>
+        <Method name="setRefeicao" returnType="void" visibility="public">
+          <Argument type="String" name="refeicao"/>
+        </Method>
+        <Method name="getPrecoTotatl" returnType="double" visibility="public"/>
+        <Method name="setPrecoTotatl" returnType="void" visibility="public">
+          <Argument type="double" name="precoTotatl"/>
+        </Method>
+        <Method name="getPassageiro" returnType="Passageiro" visibility="public"/>
+        <Method name="setPassageiro" returnType="void" visibility="public">
+          <Argument type="Passageiro" name="passageiro"/>
+        </Method>
+        <Method name="getVoo" returnType="Voo" visibility="public"/>
+        <Method name="setVoo" returnType="void" visibility="public">
+          <Argument type="Voo" name="voo"/>
+        </Method>
+        <Method name="CalcularPrecoTotal" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Teste" package="PassagemAerea" visibility="public" xPosition="1223.0" yPosition="13.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Voo" package="PassagemAerea" visibility="public" isAbstract="true" xPosition="940.0" yPosition="4.0">
+      <Fields>
+        <Field name="idVoo" type="int" visibility="private"/>
+        <Field name="origem" type="String" visibility="private"/>
+        <Field name="precoBase" type="double" visibility="package"/>
+        <Field name="disponibilidade" type="boolean" visibility="private"/>
+        <Field name="aviao" type="Aviao" visibility="package"/>
+        <Field name="vi" type="VooInternacional" visibility="package"/>
+        <Field name="vn" type="VooNacional" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idVoo"/>
+          <Argument type="int" name="duracao"/>
+          <Argument type="int" name="embarcados"/>
+          <Argument type="String" name="origem"/>
+          <Argument type="String" name="destino"/>
+          <Argument type="String" name="data"/>
+          <Argument type="String" name="hora"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIdVoo" returnType="int" visibility="public"/>
+        <Method name="setIdVoo" returnType="void" visibility="public">
+          <Argument type="int" name="idVoo"/>
+        </Method>
+        <Method name="getDuracao" returnType="int" visibility="public"/>
+        <Method name="setDuracao" returnType="void" visibility="public">
+          <Argument type="int" name="duracao"/>
+        </Method>
+        <Method name="getOrigem" returnType="String" visibility="public"/>
+        <Method name="setOrigem" returnType="void" visibility="public">
+          <Argument type="String" name="origem"/>
+        </Method>
+        <Method name="getDestino" returnType="String" visibility="public"/>
+        <Method name="setDestino" returnType="void" visibility="public">
+          <Argument type="String" name="destino"/>
+        </Method>
+        <Method name="getData" returnType="String" visibility="public"/>
+        <Method name="setData" returnType="void" visibility="public">
+          <Argument type="String" name="data"/>
+        </Method>
+        <Method name="getHora" returnType="String" visibility="public"/>
+        <Method name="setHora" returnType="void" visibility="public">
+          <Argument type="String" name="hora"/>
+        </Method>
+        <Method name="getPrecoBase" returnType="double" visibility="public"/>
+        <Method name="setPrecoBase" returnType="void" visibility="public">
+          <Argument type="double" name="precoBase"/>
+        </Method>
+        <Method name="getEmbarcados" returnType="int" visibility="public"/>
+        <Method name="setEmbarcados" returnType="void" visibility="public">
+          <Argument type="int" name="embarcados"/>
+        </Method>
+        <Method name="isDisponibilidade" returnType="boolean" visibility="public"/>
+        <Method name="setDisponibilidade" returnType="void" visibility="public">
+          <Argument type="boolean" name="disponibilidade"/>
+        </Method>
+        <Method name="calcularValor" returnType="void" visibility="public" isAbstract="true"/>
+        <Method name="desconto" returnType="void" visibility="public" isAbstract="true"/>
+        <Method name="Disponibilidade" returnType="void" visibility="package" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="VooInternacional" package="PassagemAerea" visibility="public" xPosition="1085.0" yPosition="654.0">
+      <Fields>
+        <Field name="aviao" type="Aviao" visibility="package"/>
+        <Field name="taxaEmbarque" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idVoo"/>
+          <Argument type="int" name="duracao"/>
+          <Argument type="int" name="embarcados"/>
+          <Argument type="String" name="origem"/>
+          <Argument type="String" name="destino"/>
+          <Argument type="String" name="data"/>
+          <Argument type="String" name="hora"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTaxaEmbarque" returnType="double" visibility="public"/>
+        <Method name="setTaxaEmbarque" returnType="void" visibility="public">
+          <Argument type="double" name="taxaEmbarque"/>
+        </Method>
+        <Method name="getTaxaImigracao" returnType="double" visibility="public"/>
+        <Method name="setTaxaImigracao" returnType="void" visibility="public">
+          <Argument type="double" name="taxaImigracao"/>
+        </Method>
+        <Method name="calcularValor" returnType="void" visibility="public"/>
+        <Method name="desconto" returnType="void" visibility="public"/>
+        <Method name="Disponibilidade" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Class name="VooNacional" package="PassagemAerea" visibility="public" xPosition="509.0" yPosition="632.0">
+      <Fields>
+        <Field name="taxaEmbarque" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="idVoo"/>
+          <Argument type="int" name="duracao"/>
+          <Argument type="int" name="embarcados"/>
+          <Argument type="String" name="origem"/>
+          <Argument type="String" name="destino"/>
+          <Argument type="String" name="data"/>
+          <Argument type="String" name="hora"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTaxaEmbarque" returnType="double" visibility="public"/>
+        <Method name="setTaxaEmbarque" returnType="void" visibility="public">
+          <Argument type="double" name="taxaEmbarque"/>
+        </Method>
+        <Method name="calcularValor" returnType="void" visibility="public"/>
+        <Method name="desconto" returnType="void" visibility="public"/>
+        <Method name="Disponibilidade" returnType="void" visibility="package"/>
+      </Methods>
+    </Class>
+    <Interface name="Checkin" package="PassagemAerea" visibility="public" xPosition="629.0" yPosition="13.0">
+      <Methods>
+        <Method name="FazerCheckin" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="PassagemAerea.Reserva" target="PassagemAerea.Passageiro" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="PassagemAerea.Passageiro" target="PassagemAerea.Checkin"/>
+    <HasRelation name="vn" source="PassagemAerea.Voo" target="PassagemAerea.VooNacional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="aviao" source="PassagemAerea.Embarcar" target="PassagemAerea.Aviao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="voo" source="PassagemAerea.Reserva" target="PassagemAerea.Voo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="reserva" source="PassagemAerea.Embarcar" target="PassagemAerea.Reserva" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="PassagemAerea.Embarcar" target="PassagemAerea.Reserva" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="PassagemAerea.Reserva" target="PassagemAerea.Voo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="PassagemAerea.VooNacional" target="PassagemAerea.Voo"/>
+    <HasRelation name="vi" source="PassagemAerea.Voo" target="PassagemAerea.VooInternacional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="passageiro" source="PassagemAerea.Embarcar" target="PassagemAerea.Passageiro" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="PassagemAerea.VooInternacional" target="PassagemAerea.Voo"/>
+    <HasRelation name="aviao" source="PassagemAerea.VooInternacional" target="PassagemAerea.Aviao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="aviao" source="PassagemAerea.Voo" target="PassagemAerea.Aviao" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="passageiro" source="PassagemAerea.Reserva" target="PassagemAerea.Passageiro" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

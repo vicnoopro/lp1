@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="VictoriaCaixeta_0304">
+  <ClassDiagramComponents>
+    <Class name="CarrinhodeCompras" package="revisao_loja" visibility="public" xPosition="127.0" yPosition="86.0">
+      <Fields>
+        <Field name="itens" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="carCamiseta" returnType="void" visibility="public"/>
+        <Method name="carCalcaMasc" returnType="void" visibility="public"/>
+        <Method name="carCalcaFem" returnType="void" visibility="public"/>
+        <Method name="carBermuda" returnType="void" visibility="public"/>
+        <Method name="carShort" returnType="void" visibility="public"/>
+        <Method name="carGarrafa" returnType="void" visibility="public"/>
+        <Method name="carCamTer" returnType="void" visibility="public"/>
+        <Method name="carMeia" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Cliente" package="revisao_loja" visibility="public" xPosition="437.0" yPosition="65.0">
+      <Fields>
+        <Field name="nomeCliente" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getNomeCliente" returnType="String" visibility="public"/>
+        <Method name="setNomeCliente" returnType="void" visibility="public">
+          <Argument type="String" name="nomeCliente"/>
+        </Method>
+        <Method name="getCepCliente" returnType="String" visibility="public"/>
+        <Method name="setCepCliente" returnType="void" visibility="public">
+          <Argument type="String" name="cepCliente"/>
+        </Method>
+        <Method name="getCpfCliente" returnType="String" visibility="public"/>
+        <Method name="setCpfCliente" returnType="void" visibility="public">
+          <Argument type="String" name="cpfCliente"/>
+        </Method>
+        <Method name="getMetPagamento" returnType="String" visibility="public"/>
+        <Method name="setMetPagamento" returnType="void" visibility="public">
+          <Argument type="String" name="metPagamento"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Pedido" package="revisao_loja" visibility="public" xPosition="478.0" yPosition="309.0">
+      <Fields>
+        <Field name="valTotal" type="double" visibility="private"/>
+        <Field name="statusPedido" type="String" visibility="private"/>
+        <Field name="objProduto" type="Produto" visibility="package"/>
+        <Field name="objCliente" type="Cliente" visibility="package"/>
+        <Field name="objCarrinho" type="CarrinhodeCompras" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Produto" name="objProduto"/>
+          <Argument type="Cliente" name="objCliente"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValTotal" returnType="double" visibility="public"/>
+        <Method name="setValTotal" returnType="void" visibility="public">
+          <Argument type="double" name="valTotal"/>
+        </Method>
+        <Method name="getStatusPedido" returnType="String" visibility="public"/>
+        <Method name="setStatusPedido" returnType="void" visibility="public">
+          <Argument type="String" name="statusPedido"/>
+        </Method>
+        <Method name="venderCamiseta" returnType="void" visibility="public"/>
+        <Method name="venderCalcaMasc" returnType="void" visibility="public"/>
+        <Method name="venderCalcaFem" returnType="void" visibility="public"/>
+        <Method name="venderBermuda" returnType="void" visibility="public"/>
+        <Method name="venderShort" returnType="void" visibility="public"/>
+        <Method name="venderGarrafa" returnType="void" visibility="public"/>
+        <Method name="venderCamTer" returnType="void" visibility="public"/>
+        <Method name="venderMeia" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Produto" package="revisao_loja" visibility="public" xPosition="936.0" yPosition="86.0">
+      <Fields>
+        <Field name="valProduto" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getValProduto" returnType="double" visibility="public"/>
+        <Method name="setValProduto" returnType="void" visibility="public">
+          <Argument type="double" name="valProduto"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Teste" package="revisao_loja" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="objCarrinho" source="revisao_loja.Pedido" target="revisao_loja.CarrinhodeCompras" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="objCliente" source="revisao_loja.Pedido" target="revisao_loja.Cliente" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="objProduto" source="revisao_loja.Pedido" target="revisao_loja.Produto" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
