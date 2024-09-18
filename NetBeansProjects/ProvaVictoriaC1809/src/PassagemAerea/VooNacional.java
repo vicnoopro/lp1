@@ -46,6 +46,7 @@ public class VooNacional extends Voo {
         } else {
 
             System.out.println("Voo lotado!");
+            
         }
 
     }
