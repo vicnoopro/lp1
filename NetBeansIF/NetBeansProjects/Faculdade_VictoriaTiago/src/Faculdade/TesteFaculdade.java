@@ -11,6 +11,7 @@ public class TesteFaculdade {
         Cursos objCurso = new Cursos(); //criando objetos
         Disciplina objDisciplina = new Disciplina(); //criando objetos
         Avaliacao objAvaliacao = new Avaliacao(); //criando objetos
+        
 
         System.out.println("Insira o nome do curso: ");
         String nomeCurso = entrada.next();
