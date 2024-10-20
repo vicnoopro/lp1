@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package modelo;
-
 import com.mysql.jdbc.Driver;
 import static java.lang.Class.forName;
 import java.sql.Connection;
