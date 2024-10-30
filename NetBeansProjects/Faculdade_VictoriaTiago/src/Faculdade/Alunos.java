@@ -19,6 +19,8 @@ public class Alunos extends Pessoa {// classe filha de pessoa
     }
 
     private String nMatricula;
+    private boolean matriculado;
+    
 
     Avaliacao objAvaliacao;
 
@@ -30,6 +32,26 @@ public class Alunos extends Pessoa {// classe filha de pessoa
         this.nMatricula = nMatricula;
     }
 
+    public boolean isMatriculado() {
+        return matriculado;
+    }
+
+    public void setMatriculado(boolean matriculado) {
+        this.matriculado = false;
+    }
+    
+    public void matricular(){
+        
+        this.matriculado=true;
+        System.out.println("O aluno está matriculado no curso;");
+    }
+    
+    public boolean desmatricular(){
+        
+        System.out.println("O aluno está desmatriculado no curso.");
+        return this.matriculado;
+        
+    }
     @Override
     public void mostra() {// método para mostrar dados referente ao aluno
 
