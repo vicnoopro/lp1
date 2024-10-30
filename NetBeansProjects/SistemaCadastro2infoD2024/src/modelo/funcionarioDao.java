@@ -9,23 +9,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class CidadeDao { // Data Acess Object padrão
-
-    public List<Cidade> getLista() {
-        String sql = "select * from cidade";
-        List<Cidade> lista = new ArrayList<>();
+public class funcionarioDao { // Data Acess Object padrão
+ConverteDataUtilitario converte = new ConverteDataUtilitario();
+ CidadeDao objCidadeDao = new CidadeDao();
+ 
+    public List<Funcionario> getLista() {
+        String sql = "select * from funcionario";
+        List<Funcionario> lista = new ArrayList<>();
         try {
             PreparedStatement pst = Conexao.getPreparedStatement(sql);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Cidade objCidade = new Cidade();
-                objCidade.setCodigo(rs.getInt("codCidade"));
-                objCidade.setNome(rs.getString("nomeCidade"));
-                objCidade.setUf(rs.getString("ufCidade"));
-                lista.add(objCidade);
+                Funcionario objFuncionario = new Funcionario();
+                objFuncionario.setCodigo(rs.getInt("codFuncionario"));
+                objFuncionario.setNome(rs.getString("nomeFuncionario"));
+                objFuncionario.setSalario(rs.getDouble("salarioFuncionario"));   
+                objFuncionario.setNascimento(converte.converteCalendario(rs.getDate("nascimentoFuncionario")));
+                objFuncionario.setObjCidade(objCidadeDao.localizar(rs.getInt("cidadeFuncionario")));
+                lista.add(objFuncionario);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());

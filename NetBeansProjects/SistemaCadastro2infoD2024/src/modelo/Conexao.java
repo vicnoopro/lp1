@@ -18,9 +18,9 @@ public class Conexao {
 
     private static final String banco = "jdbc:mysql://localhost:3307/banco2infod2024";
     //private static final String banco = "jdbc:mysql://localhost:3307/banco2infod2024?autoReconnect=true&useSSL=false";
-    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String usuario = "root";
-    private static final String senha = "123456";
+    private static final String senha = "1234";
 
     private static Connection con = null;
 
