@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 12172700606
+ * @author tulio
  */
 public class FormPrincipal extends javax.swing.JFrame {
 
@@ -33,7 +33,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuBarra = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         menuCidade = new javax.swing.JMenuItem();
-        menuFuncionario = new javax.swing.JMenuItem();
+        menuFuncionaio = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         menuSobre = new javax.swing.JMenuItem();
 
@@ -41,6 +41,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         setTitle("Sistema de Cadastro");
 
         menuCadastro.setText("Cadastro");
+        menuCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastroActionPerformed(evt);
+            }
+        });
 
         menuCidade.setText("Cidade");
         menuCidade.addActionListener(new java.awt.event.ActionListener() {
@@ -50,8 +55,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         menuCadastro.add(menuCidade);
 
-        menuFuncionario.setText("Funcionário");
-        menuCadastro.add(menuFuncionario);
+        menuFuncionaio.setText("Funcionário");
+        menuCadastro.add(menuFuncionaio);
 
         menuBarra.add(menuCadastro);
 
@@ -77,7 +82,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
@@ -85,17 +90,21 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void menuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSobreActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Sistema de Cadastro\nDireitos Reservados\nVersão 1.0");
+        JOptionPane.showMessageDialog(null, "Sistema de Cadastro\nDireito Reservados\nVersão 1.0");
     }//GEN-LAST:event_menuSobreActionPerformed
 
     private void menuCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCidadeActionPerformed
         // TODO add your handling code here:
-        FormCidade form = new FormCidade(this,true); //this chama deste form e true: modal: sobre o form principal, não deixa acessar o form principal
+        FormCidade form = new FormCidade(this,true);//this: chama deste form e true: modal: sobre o form principal, não deixa acessar o form principal
         form.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);// não deixa fechar o form pelo x
-        form.setLocationRelativeTo(null); //centro da tela
-        form.setResizable(false); //retira o botão maximizar
-        form.setVisible(true); //visualiza o form
+        form.setLocationRelativeTo(null);// centro da tela
+        form.setResizable(false);// retira o botão maximizar
+        form.setVisible(true);//visualiza o form
     }//GEN-LAST:event_menuCidadeActionPerformed
+
+    private void menuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +149,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBarra;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenuItem menuCidade;
-    private javax.swing.JMenuItem menuFuncionario;
+    private javax.swing.JMenuItem menuFuncionaio;
     private javax.swing.JMenuItem menuSobre;
     // End of variables declaration//GEN-END:variables
 }

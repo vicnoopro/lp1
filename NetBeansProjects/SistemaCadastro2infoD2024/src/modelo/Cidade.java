@@ -6,21 +6,18 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Objects;
 
 /**
  *
- * @author 12172700606
+ * @author tulio
  */
-public class Funcionario implements Serializable{
+public class Cidade implements Serializable{ // padrão java beans
     private Integer codigo;
-    private String nome;
-    private Double salario;
-    private Calendar nascimento;
-    private Cidade objCidade;
+    private String nome,uf;
+    
 
-    public Funcionario() {
+    public Cidade() { // padrão java beans
     }
 
     public Integer getCodigo() {
@@ -39,34 +36,18 @@ public class Funcionario implements Serializable{
         this.nome = nome;
     }
 
-    public Double getSalario() {
-        return salario;
+    public String getUf() {
+        return uf;
     }
 
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
-
-    public Calendar getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Calendar nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public Cidade getObjCidade() {
-        return objCidade;
-    }
-
-    public void setObjCidade(Cidade objCidade) {
-        this.objCidade = objCidade;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.codigo);
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -81,7 +62,7 @@ public class Funcionario implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Funcionario other = (Funcionario) obj;
+        final Cidade other = (Cidade) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
@@ -89,4 +70,8 @@ public class Funcionario implements Serializable{
     }
     
     
+    
+    
+    
+
 }

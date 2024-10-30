@@ -10,15 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 12172700606
- */
-public class CidadeDao {    //Data Acess Object padrão
+public class CidadeDao { // Data Acess Object padrão
 
     public List<Cidade> getLista() {
         String sql = "select * from cidade";
@@ -28,21 +22,19 @@ public class CidadeDao {    //Data Acess Object padrão
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Cidade objCidade = new Cidade();
-                objCidade.setCodigo(rs.getInt("CodCidade"));
+                objCidade.setCodigo(rs.getInt("codCidade"));
                 objCidade.setNome(rs.getString("nomeCidade"));
                 objCidade.setUf(rs.getString("ufCidade"));
                 lista.add(objCidade);
             }
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
         }
-
         return lista;
     }
 
     public boolean incluir(Cidade objCidade) {
-        String sql = "insert into cidade(nomeCidade, ufCidade) values (?,?)";
+        String sql = "insert into cidade(nomeCidade, ufCidade) values(?,?)";
         try {
             PreparedStatement pst = Conexao.getPreparedStatement(sql);
             pst.setString(1, objCidade.getNome());
@@ -51,12 +43,11 @@ public class CidadeDao {    //Data Acess Object padrão
                 JOptionPane.showMessageDialog(null, "Cidade cadastrada com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Cidade não cadstrada!");
+                JOptionPane.showMessageDialog(null, "Cidade não cadastrada!");
                 return false;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
-
         }
         return false;
     }
@@ -77,7 +68,6 @@ public class CidadeDao {    //Data Acess Object padrão
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
-
         }
         return false;
     }
@@ -88,15 +78,14 @@ public class CidadeDao {    //Data Acess Object padrão
             PreparedStatement pst = Conexao.getPreparedStatement(sql);
             pst.setInt(1, objCidade.getCodigo());
             if (pst.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "Cidade excluida com sucesso!");
+                JOptionPane.showMessageDialog(null, "Cidade excluída com sucesso!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Cidade não ecluída!");
+                JOptionPane.showMessageDialog(null, "Cidade não excluída!");
                 return false;
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro de SQL: " + ex.getMessage());
-
         }
         return false;
     }
@@ -109,4 +98,5 @@ public class CidadeDao {    //Data Acess Object padrão
         }
 
     }
+
 }

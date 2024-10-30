@@ -9,45 +9,51 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Cidade;
 import modelo.CidadeDao;
+
 /**
  *
- * @author 12172700606
+ * @author tulio
  */
 public class FormCidade extends javax.swing.JDialog {
     CidadeDao cidadeDao = new CidadeDao();
     
     public void atualizaTabela(){
-        listCidade.clear(); //limpa a lista
-        listCidade.addAll(cidadeDao.getLista()); 
-        int linha = listCidade.size() - 1;
-        if(linha >= 0){
+        listCidade.clear();// limpa a lista
+        listCidade.addAll(cidadeDao.getLista());
+        int linha = listCidade.size()-1;
+        if(linha>=0){
             tblCidade.setRowSelectionInterval(linha, linha);
             tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, linha, true));
         }
+        
     }
     
     private void trataEdicao(boolean editando){
-         btnCancelar.setEnabled(editando);
-         btnSalvar.setEnabled(editando);
-         btnEditar.setEnabled(!editando);
-         int linha = listCidade.size()-1;
-         if(linha < 0){
-             btnExcluir.setEnabled(false);
-             txtCidade.setText("");
-             txtCodigo.setText("");
-         } else{
-             btnExcluir.setEnabled(!editando);
-         }
-         btnNovo.setEnabled(!editando);
-         btnFechar.setEnabled(!editando);
-         btnPrimeiro.setEnabled(!editando);
-         btnProximo.setEnabled(!editando);
-         btnAnterior.setEnabled(!editando);
-         btnUltimo.setEnabled(!editando);
-         txtCidade.setEnabled(editando);
-         cbxUf.setEnabled(editando);
-         tblCidade.setEnabled(editando);
-         
+        btnCancelar.setEnabled(editando);
+        btnSalvar.setEnabled(editando);
+        btnEditar.setEnabled(!editando);
+        int linha = listCidade.size()-1;
+        if(linha<0){
+            btnPrimeiro.setEnabled(false);
+            btnProximo.setEnabled(false);
+            btnAnterior.setEnabled(false);
+            btnUltimo.setEnabled(false);
+            btnEditar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            txtCidade.setText("");
+            txtCodigo.setText("");
+        }else{
+            btnExcluir.setEnabled(!editando);
+        }
+        btnNovo.setEnabled(!editando);
+        btnFechar.setEnabled(!editando);
+        btnPrimeiro.setEnabled(!editando);
+        btnProximo.setEnabled(!editando);
+        btnAnterior.setEnabled(!editando);
+        btnUltimo.setEnabled(!editando);
+        txtCidade.setEnabled(editando);
+        cbxUf.setEnabled(editando);
+        tblCidade.setEnabled(editando);
     }
 
     /**
@@ -70,9 +76,6 @@ public class FormCidade extends javax.swing.JDialog {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         listCidade = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Cidade>())
         ;
         painelNavegacao = new javax.swing.JPanel();
@@ -83,7 +86,7 @@ public class FormCidade extends javax.swing.JDialog {
         btnFechar = new javax.swing.JButton();
         painelGuiaAbas = new javax.swing.JTabbedPane();
         painelListagem = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tblCidade = new javax.swing.JTable();
         painelCadastro = new javax.swing.JPanel();
         painelAcoes = new javax.swing.JPanel();
@@ -98,21 +101,6 @@ public class FormCidade extends javax.swing.JDialog {
         txtCodigo = new javax.swing.JTextField();
         txtCidade = new javax.swing.JTextField();
         cbxUf = new javax.swing.JComboBox<>();
-
-        jTextField1.setText("jTextField1");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidades");
@@ -177,9 +165,9 @@ public class FormCidade extends javax.swing.JDialog {
         columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane2.setViewportView(tblCidade);
+        jScrollPane1.setViewportView(tblCidade);
 
-        painelListagem.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        painelListagem.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         painelGuiaAbas.addTab("Listagem", painelListagem);
 
@@ -237,16 +225,10 @@ public class FormCidade extends javax.swing.JDialog {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
-
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtCidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.uf}"), cbxUf, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
@@ -255,37 +237,38 @@ public class FormCidade extends javax.swing.JDialog {
         painelCadastro.setLayout(painelCadastroLayout);
         painelCadastroLayout.setHorizontalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelAcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+            .addComponent(painelAcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
             .addGroup(painelCadastroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(41, 41, 41)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
+                    .addComponent(jLabel1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo))
+                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addComponent(painelAcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(61, 61, 61)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(32, 32, 32)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(0, 181, Short.MAX_VALUE))
         );
 
         painelGuiaAbas.addTab("Cadastro", painelCadastro);
@@ -302,7 +285,8 @@ public class FormCidade extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelNavegacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelGuiaAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                .addComponent(painelGuiaAbas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -312,16 +296,12 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         // TODO add your handling code here:
-        dispose(); // fecha a janela
+        dispose();// fecha a janela
     }//GEN-LAST:event_btnFecharActionPerformed
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        listCidade.add(new Cidade()); //instancia o objeto Cidade e cria uam linha na tabela
+        listCidade.add(new Cidade());// instancia o objeto Cidade e cria uma linha na tabela
         int linha = listCidade.size()-1;
         tblCidade.setRowSelectionInterval(linha, linha);
         txtCidade.requestFocus();
@@ -350,9 +330,9 @@ public class FormCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
-        int opcao = JOptionPane.showOptionDialog(null,"Confirma a exclusão? " , "Pergunta", JOptionPane.YES_NO_OPTION, 
-        JOptionPane.QUESTION_MESSAGE, null, new String []{"Sim","Não"},"Sim");
+        // TODO add your handling code here:]
+        int opcao = JOptionPane.showOptionDialog(null, "Confirma a exclusão?", "Pergunta", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, new String []{"Sim","Não"},"Sim");
         if(opcao==0){
         int linhaSelecionada = tblCidade.getSelectedRow();
         Cidade objCidade = listCidade.get(linhaSelecionada);
@@ -363,35 +343,37 @@ public class FormCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
-        tblCidade.setRowSelectionInterval(0, 0); // TODO add your handling code here:
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(0, 0, true));
+        // TODO add your handling code here:
+        tblCidade.setRowSelectionInterval(0,0);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(0,0,true));
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
-        int linha = tblCidade.getSelectedRow();
-               if ((linha - 1)>=0){
-                   linha--;
-               }
-               tblCidade.setRowSelectionInterval(linha, linha);
-               tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, 0, true));
+        int linha =  tblCidade.getSelectedRow();
+        if((linha-1)>=0){
+            linha--;
+        }
+        tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         // TODO add your handling code here:
-        int linha = tblCidade.getSelectedRow();
-        if ((linha+1)<=tblCidade.getRowCount()-1){
-            linha++;
-        }
-        tblCidade.setRowSelectionInterval(linha, linha);
-               tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, 0, true));
+         int linha =  tblCidade.getSelectedRow();
+         if((linha+1)<=tblCidade.getRowCount()-1){
+             linha++;
+         }
+        tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
+        
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         // TODO add your handling code here:
-        int linha = tblCidade.getRowCount()-1;
-         tblCidade.setRowSelectionInterval(linha, linha);
-               tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, 0, true));
+         int linha =  tblCidade.getRowCount()-1;
+         tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     /**
@@ -452,9 +434,6 @@ public class FormCidade extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private java.util.List<Cidade> listCidade;
     private javax.swing.JPanel painelAcoes;
     private javax.swing.JPanel painelCadastro;
