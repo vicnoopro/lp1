@@ -29,7 +29,7 @@ ConverteDataUtilitario converte = new ConverteDataUtilitario();
                 objFuncionario.setNome(rs.getString("nomeFuncionario"));
                 objFuncionario.setSalario(rs.getDouble("salarioFuncionario"));   
                 objFuncionario.setNascimento(converte.converteCalendario(rs.getDate("nascimentoFuncionario")));
-                objFuncionario.setObjCidade(objCidadeDao.localizar(rs.getInt("cidadeFuncionario")));
+                objFuncionario.setObjCidade(objCidadeDao.localiza(rs.getInt("cidadeFuncionario")));
                 lista.add(objFuncionario);
             }
         } catch (SQLException ex) {
