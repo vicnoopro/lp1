@@ -68,13 +68,6 @@ public class Cidade implements Serializable{ // padrão java beans
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
-    
-    
     
     
     
