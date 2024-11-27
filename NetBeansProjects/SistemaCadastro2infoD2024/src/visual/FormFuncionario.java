@@ -1,33 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package visual;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Cidade;
 import modelo.CidadeDao;
-import modelo.Funcionario;
-import modelo.FuncionarioDao;
 
-/**
- *
- * @author tulio
- */
 public class FormFuncionario extends javax.swing.JDialog {
-    FuncionarioDao funcionarioDao = new FuncionarioDao();
-    
     CidadeDao cidadeDao = new CidadeDao();
     
     public void atualizaTabela(){
-        listFuncionario.clear();// limpa a lista
-        listFuncionario.addAll(funcionarioDao.getLista());
-        int linha = listFuncionario.size()-1;
+        listCidade.clear();// limpa a lista
+        listCidade.addAll(cidadeDao.getLista());
+        int linha = listCidade.size()-1;
         if(linha>=0){
-            tblFuncionario.setRowSelectionInterval(linha, linha);
-            tblFuncionario.scrollRectToVisible(tblFuncionario.getCellRect(linha, linha, true));
+            tblCidade.setRowSelectionInterval(linha, linha);
+            tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, linha, true));
         }
         
     }
@@ -36,7 +24,7 @@ public class FormFuncionario extends javax.swing.JDialog {
         btnCancelar.setEnabled(editando);
         btnSalvar.setEnabled(editando);
         btnEditar.setEnabled(!editando);
-        int linha = listFuncionario.size()-1;
+        int linha = listCidade.size()-1;
         if(linha<0){
             btnPrimeiro.setEnabled(false);
             btnProximo.setEnabled(false);
@@ -44,7 +32,7 @@ public class FormFuncionario extends javax.swing.JDialog {
             btnUltimo.setEnabled(false);
             btnEditar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            txtSalario.setText("");
+            txtCidade.setText("");
             txtCodigo.setText("");
         }else{
             btnExcluir.setEnabled(!editando);
@@ -55,9 +43,9 @@ public class FormFuncionario extends javax.swing.JDialog {
         btnProximo.setEnabled(!editando);
         btnAnterior.setEnabled(!editando);
         btnUltimo.setEnabled(!editando);
-        txtSalario.setEnabled(editando);
-        cbxCidade.setEnabled(editando);
-        tblFuncionario.setEnabled(editando);
+        txtCidade.setEnabled(editando);
+        cbxUf.setEnabled(editando);
+        tblCidade.setEnabled(editando);
     }
 
     /**
@@ -68,8 +56,6 @@ public class FormFuncionario extends javax.swing.JDialog {
         initComponents();
         atualizaTabela();
         trataEdicao(false);
-        listCidade.clear();
-        listCidade.addAll(cidadeDao.getLista());
     }
 
     /**
@@ -82,11 +68,8 @@ public class FormFuncionario extends javax.swing.JDialog {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        listFuncionario = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Funcionario>())
-        ;
         listCidade = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Cidade>())
         ;
-        converteData = new modelo.ConverteData();
         painelNavegacao = new javax.swing.JPanel();
         btnPrimeiro = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
@@ -96,7 +79,7 @@ public class FormFuncionario extends javax.swing.JDialog {
         painelGuiaAbas = new javax.swing.JTabbedPane();
         painelListagem = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblFuncionario = new javax.swing.JTable();
+        tblCidade = new javax.swing.JTable();
         painelCadastro = new javax.swing.JPanel();
         painelAcoes = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -108,20 +91,8 @@ public class FormFuncionario extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtSalario = new javax.swing.JTextField();
-        cbxCidade = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        txtNomeFuncionario = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        javax.swing.text.MaskFormatter maskData = null;
-
-        try{
-            maskData = new javax.swing.text.MaskFormatter("##/##/####");
-            maskData.setPlaceholderCharacter('_');
-        }catch(Exception e){
-
-        }
-        txtNascimento = new javax.swing.JFormattedTextField(maskData);
+        txtCidade = new javax.swing.JTextField();
+        cbxUf = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidades");
@@ -171,25 +142,22 @@ public class FormFuncionario extends javax.swing.JDialog {
 
         painelListagem.setLayout(new java.awt.BorderLayout());
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listFuncionario, tblFuncionario);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listCidade, tblCidade);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
-        columnBinding.setColumnName("Codigo");
+        columnBinding.setColumnName("Código");
         columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${objCidade}"));
-        columnBinding.setColumnName("Cidade");
-        columnBinding.setColumnClass(modelo.Cidade.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${salario}"));
-        columnBinding.setColumnName("Salario");
-        columnBinding.setColumnClass(Double.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nascimentoFormatado}"));
-        columnBinding.setColumnName("Nascimento");
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uf}"));
+        columnBinding.setColumnName("Uf");
         columnBinding.setColumnClass(String.class);
+        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane1.setViewportView(tblFuncionario);
+        jScrollPane1.setViewportView(tblCidade);
 
         painelListagem.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -240,29 +208,21 @@ public class FormFuncionario extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Cidade:");
 
-        jLabel3.setText("Cidade:");
+        jLabel3.setText("UF:");
 
         txtCodigo.setEditable(false);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblFuncionario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblFuncionario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.salario}"), txtSalario, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtCidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listCidade, cbxCidade);
-        bindingGroup.addBinding(jComboBoxBinding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblFuncionario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.objCidade}"), cbxCidade, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
-        bindingGroup.addBinding(binding);
+        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
-        jLabel4.setText("Salário:");
-
-        jLabel5.setText("Nascimento:");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblFuncionario, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nascimento}"), txtNascimento, org.jdesktop.beansbinding.BeanProperty.create("value"));
-        binding.setConverter(converteData);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.uf}"), cbxUf, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
@@ -273,30 +233,15 @@ public class FormFuncionario extends javax.swing.JDialog {
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(painelCadastroLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(27, 27, 27)
-                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(painelCadastroLayout.createSequentialGroup()
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3))
-                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(painelCadastroLayout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cbxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(painelCadastroLayout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo))
+                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelCadastroLayout.setVerticalGroup(
@@ -310,20 +255,12 @@ public class FormFuncionario extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86))
+                    .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 181, Short.MAX_VALUE))
         );
 
         painelGuiaAbas.addTab("Cadastro", painelCadastro);
@@ -356,18 +293,18 @@ public class FormFuncionario extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        listFuncionario.add(new Funcionario());// instancia o objeto Funcionario e cria uma linha na tabela
-        int linha = listFuncionario.size()-1;
-        tblFuncionario.setRowSelectionInterval(linha, linha);
-        txtSalario.requestFocus();
+        listCidade.add(new Cidade());// instancia o objeto Cidade e cria uma linha na tabela
+        int linha = listCidade.size()-1;
+        tblCidade.setRowSelectionInterval(linha, linha);
+        txtCidade.requestFocus();
         trataEdicao(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
-        int linhaSelecionada = tblFuncionario.getSelectedRow();
-        Funcionario objFuncionario = listFuncionario.get(linhaSelecionada);
-        funcionarioDao.salvar(objFuncionario);
+        int linhaSelecionada = tblCidade.getSelectedRow();
+        Cidade objCidade = listCidade.get(linhaSelecionada);
+        cidadeDao.salvar(objCidade);
         atualizaTabela();
         trataEdicao(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -381,7 +318,7 @@ public class FormFuncionario extends javax.swing.JDialog {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         trataEdicao(true);
-        txtSalario.requestFocus();
+        txtCidade.requestFocus();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -389,9 +326,9 @@ public class FormFuncionario extends javax.swing.JDialog {
         int opcao = JOptionPane.showOptionDialog(null, "Confirma a exclusão?", "Pergunta", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String []{"Sim","Não"},"Sim");
         if(opcao==0){
-        int linhaSelecionada = tblFuncionario.getSelectedRow();
-        Funcionario objFuncionario = listFuncionario.get(linhaSelecionada);
-        funcionarioDao.remover(objFuncionario);
+        int linhaSelecionada = tblCidade.getSelectedRow();
+        Cidade objCidade = listCidade.get(linhaSelecionada);
+        cidadeDao.remover(objCidade);
         atualizaTabela();
         trataEdicao(false);
         }
@@ -399,36 +336,36 @@ public class FormFuncionario extends javax.swing.JDialog {
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         // TODO add your handling code here:
-        tblFuncionario.setRowSelectionInterval(0,0);
-        tblFuncionario.scrollRectToVisible(tblFuncionario.getCellRect(0,0,true));
+        tblCidade.setRowSelectionInterval(0,0);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(0,0,true));
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
-        int linha =  tblFuncionario.getSelectedRow();
+        int linha =  tblCidade.getSelectedRow();
         if((linha-1)>=0){
             linha--;
         }
-        tblFuncionario.setRowSelectionInterval(linha,linha);
-        tblFuncionario.scrollRectToVisible(tblFuncionario.getCellRect(linha,0,true));
+        tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblFuncionario.getSelectedRow();
-         if((linha+1)<=tblFuncionario.getRowCount()-1){
+         int linha =  tblCidade.getSelectedRow();
+         if((linha+1)<=tblCidade.getRowCount()-1){
              linha++;
          }
-        tblFuncionario.setRowSelectionInterval(linha,linha);
-        tblFuncionario.scrollRectToVisible(tblFuncionario.getCellRect(linha,0,true));
+        tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
         
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblFuncionario.getRowCount()-1;
-         tblFuncionario.setRowSelectionInterval(linha,linha);
-        tblFuncionario.scrollRectToVisible(tblFuncionario.getCellRect(linha,0,true));
+         int linha =  tblCidade.getRowCount()-1;
+         tblCidade.setRowSelectionInterval(linha,linha);
+        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     /**
@@ -485,26 +422,20 @@ public class FormFuncionario extends javax.swing.JDialog {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    private javax.swing.JComboBox<String> cbxCidade;
-    private modelo.ConverteData converteData;
+    private javax.swing.JComboBox<String> cbxUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private java.util.List<Cidade> listCidade;
-    private java.util.List<Funcionario> listFuncionario;
     private javax.swing.JPanel painelAcoes;
     private javax.swing.JPanel painelCadastro;
     private javax.swing.JTabbedPane painelGuiaAbas;
     private javax.swing.JPanel painelListagem;
     private javax.swing.JPanel painelNavegacao;
-    private javax.swing.JTable tblFuncionario;
+    private javax.swing.JTable tblCidade;
+    private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JFormattedTextField txtNascimento;
-    private javax.swing.JTextField txtNomeFuncionario;
-    private javax.swing.JTextField txtSalario;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

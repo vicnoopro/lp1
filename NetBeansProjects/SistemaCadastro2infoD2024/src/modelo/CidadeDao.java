@@ -98,24 +98,22 @@ public class CidadeDao { // Data Acess Object padrão
         }
 
     }
-    
-     public Cidade localizar(Integer id){
-        String sql = "select * from cidade where codCidade=?";
+
+    public Cidade localizar(Integer id) {
+        String sql = "select * from didade where codCidade=?";
         Cidade obj = new Cidade();
-        try{
+        try {
             PreparedStatement pst = Conexao.getPreparedStatement(sql);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 obj.setCodigo(rs.getInt("codCidade"));
                 obj.setNome(rs.getString("nomeCidade"));
                 obj.setUf(rs.getString("ufCidade"));
-                return obj;
             }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog
-        (null,"Erro de SQL Localizar"+e.getMessage());
-    }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro de SQL localizar" + e.getMessage());
+        }
         return null;
     }
 
