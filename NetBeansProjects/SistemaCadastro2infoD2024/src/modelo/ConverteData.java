@@ -11,31 +11,29 @@ import org.jdesktop.beansbinding.Converter;
 
 /**
  *
- * @author 13826640608
+ * @author tulio
  */
-public class ConverteData extends Converter {
-
+public class ConverteData extends Converter{
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    //converte do objeto para tela do usuário
+    //converte do objeto para Tela do usuário "convertForward"
     @Override
     public Object convertForward(Object value) {
-        Calendar c = (Calendar) value;
+        Calendar c = (Calendar)value;
         return sdf.format(c.getTime());
     }
 
     //converte da tela do usuário para o objeto "convertReverse"
     @Override
     public Object convertReverse(Object value) {
-        String str = (String) value;
+        String str = (String)value;
         Calendar c = Calendar.getInstance();
-
-        try {
+        try{
             c.setTime(sdf.parse(str));
             return c;
-        } catch (Exception ex) {
+        }catch(Exception ex){
             return null;
         }
     }
-
+    
 }

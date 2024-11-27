@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ *
+ * @author tulio
+ */
 public class ConverteDataUtilitario {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

@@ -56,6 +56,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuCadastro.add(menuCidade);
 
         menuFuncionaio.setText("Funcionário");
+        menuFuncionaio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFuncionaioActionPerformed(evt);
+            }
+        });
         menuCadastro.add(menuFuncionaio);
 
         menuBarra.add(menuCadastro);
@@ -105,6 +110,16 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void menuCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuCadastroActionPerformed
+
+    private void menuFuncionaioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFuncionaioActionPerformed
+        // TODO add your handling code here:
+        FormFuncionario form = new FormFuncionario(this,true);//this: chama deste form e true: modal: sobre o form principal, não deixa acessar o form principal
+        form.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);// não deixa fechar o form pelo x
+        form.setLocationRelativeTo(null);// centro da tela
+        form.setResizable(false);// retira o botão maximizar
+        form.setVisible(true);//visualiza o form
+        
+    }//GEN-LAST:event_menuFuncionaioActionPerformed
 
     /**
      * @param args the command line arguments
