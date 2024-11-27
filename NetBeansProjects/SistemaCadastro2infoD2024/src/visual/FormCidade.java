@@ -56,6 +56,19 @@ public class FormCidade extends javax.swing.JDialog {
         tblCidade.setEnabled(editando);
     }
 
+    public boolean validaCampos(){
+        if (!(txtCidade.getText().length()>0)){
+            JOptionPane.showMessageDialog(null,"Informe o nome da cidade: ");
+            txtCidade.requestFocus();
+            return false;
+        }
+        if(cbxUf.getSelectedIndex()>=0){
+            JOptionPane.showMessageDialog(null,"Informe a UF da cidade: ");
+        cbxUf.requestFocus();
+        return false;
+        }
+        return true;
+    }
     /**
      * Creates new form FormCidade
      */
@@ -310,11 +323,13 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
+        if(validaCampos()){
         int linhaSelecionada = tblCidade.getSelectedRow();
         Cidade objCidade = listCidade.get(linhaSelecionada);
         cidadeDao.salvar(objCidade);
         atualizaTabela();
         trataEdicao(false);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
