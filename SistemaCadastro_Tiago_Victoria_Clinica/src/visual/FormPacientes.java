@@ -7,23 +7,23 @@ package visual;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Cidade;
-import modelo.CidadeDao;
+import modelo.Pacientes;
+import modelo.PacientesDao;
 
 /**
  *
  * @author tulio
  */
-public class FormCidade extends javax.swing.JDialog {
-    CidadeDao cidadeDao = new CidadeDao();
+public class FormPacientes extends javax.swing.JDialog {
+    PacientesDao pacientesDao = new PacientesDao();
     
     public void atualizaTabela(){
-        listCidade.clear();// limpa a lista
-        listCidade.addAll(cidadeDao.getLista());
-        int linha = listCidade.size()-1;
+        listPacientes.clear();// limpa a lista
+        listPacientes.addAll(pacientesDao.getLista());
+        int linha = listPacientes.size()-1;
         if(linha>=0){
-            tblCidade.setRowSelectionInterval(linha, linha);
-            tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, linha, true));
+            tblPacientes.setRowSelectionInterval(linha, linha);
+            tblPacientes.scrollRectToVisible(tblPacientes.getCellRect(linha, linha, true));
         }
         
     }
@@ -32,7 +32,7 @@ public class FormCidade extends javax.swing.JDialog {
         btnCancelar.setEnabled(editando);
         btnSalvar.setEnabled(editando);
         btnEditar.setEnabled(!editando);
-        int linha = listCidade.size()-1;
+        int linha = listPacientes.size()-1;
         if(linha<0){
             btnPrimeiro.setEnabled(false);
             btnProximo.setEnabled(false);
@@ -40,7 +40,7 @@ public class FormCidade extends javax.swing.JDialog {
             btnUltimo.setEnabled(false);
             btnEditar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            txtCidade.setText("");
+            txtNomePaciente.setText("");
             txtCodigo.setText("");
         }else{
             btnExcluir.setEnabled(!editando);
@@ -51,28 +51,33 @@ public class FormCidade extends javax.swing.JDialog {
         btnProximo.setEnabled(!editando);
         btnAnterior.setEnabled(!editando);
         btnUltimo.setEnabled(!editando);
-        txtCidade.setEnabled(editando);
-        cbxUf.setEnabled(editando);
-        tblCidade.setEnabled(editando);
+        txtNomePaciente.setEnabled(editando);
+        txtCpf.setEnabled(editando);
+        txtTelefone.setEnabled(editando);
+        txtEmail.setEnabled(editando);
+        
+        tblPacientes.setEnabled(editando);
     }
-
+    
     public boolean validaCampos(){
-        if (!(txtCidade.getText().length()>0)){
-            JOptionPane.showMessageDialog(null,"Informe o nome da cidade: ");
-            txtCidade.requestFocus();
+        if(!(txtNomePaciente.getText().length()>0)){
+            JOptionPane.showMessageDialog(null, "Informe o nome do paciente: ");
+            txtNomePaciente.requestFocus();
             return false;
         }
-        if(!(cbxUf.getSelectedIndex()>=0)){
-            JOptionPane.showMessageDialog(null,"Informe a UF da cidade: ");
-        cbxUf.requestFocus();
-        return false;
+        if(!(txtCpf.getText().length()>0)){
+            JOptionPane.showMessageDialog(null, "Informe o cpf do paciente: ");
+            txtCpf.requestFocus();
+            return false;
         }
         return true;
     }
+    
+
     /**
-     * Creates new form FormCidade
+     * Creates new form FormPacientes
      */
-    public FormCidade(java.awt.Frame parent, boolean modal) {
+    public FormPacientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         atualizaTabela();
@@ -89,7 +94,7 @@ public class FormCidade extends javax.swing.JDialog {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        listCidade = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Cidade>())
+        listPacientes = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<modelo.Pacientes>())
         ;
         painelNavegacao = new javax.swing.JPanel();
         btnPrimeiro = new javax.swing.JButton();
@@ -100,7 +105,7 @@ public class FormCidade extends javax.swing.JDialog {
         painelGuiaAbas = new javax.swing.JTabbedPane();
         painelListagem = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCidade = new javax.swing.JTable();
+        tblPacientes = new javax.swing.JTable();
         painelCadastro = new javax.swing.JPanel();
         painelAcoes = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -110,13 +115,17 @@ public class FormCidade extends javax.swing.JDialog {
         btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtCidade = new javax.swing.JTextField();
-        cbxUf = new javax.swing.JComboBox<>();
+        txtNomePaciente = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Cidades");
+        setTitle("Cadastro de Pacientes");
 
         painelNavegacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
         painelNavegacao.setLayout(new java.awt.GridLayout(1, 0));
@@ -163,22 +172,25 @@ public class FormCidade extends javax.swing.JDialog {
 
         painelListagem.setLayout(new java.awt.BorderLayout());
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listCidade, tblCidade);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listPacientes, tblPacientes);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
-        columnBinding.setColumnName("Código");
+        columnBinding.setColumnName("Codigo");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uf}"));
-        columnBinding.setColumnName("Uf");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cpf}"));
+        columnBinding.setColumnName("Cpf");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${telefone}"));
+        columnBinding.setColumnName("Telefone");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${email}"));
+        columnBinding.setColumnName("Email");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane1.setViewportView(tblCidade);
+        jScrollPane1.setViewportView(tblPacientes);
 
         painelListagem.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -229,21 +241,41 @@ public class FormCidade extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
-        jLabel2.setText("Cidade:");
-
-        jLabel3.setText("UF:");
+        jLabel2.setText("Nome:");
 
         txtCodigo.setEditable(false);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtCidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtNomePaciente, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jLabel4.setText("Cpf:");
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.uf}"), cbxUf, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.cpf}"), txtCpf, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        txtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Telefone: ");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.telefone}"), txtTelefone, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Email:");
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.email}"), txtEmail, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
@@ -252,36 +284,53 @@ public class FormCidade extends javax.swing.JDialog {
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelAcoes, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
             .addGroup(painelCadastroLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(16, 16, 16)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodigo))
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCadastroLayout.createSequentialGroup()
                 .addComponent(painelAcoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(83, 83, 83)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(25, 25, 25)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(txtNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 181, Short.MAX_VALUE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 100, Short.MAX_VALUE))
         );
 
         painelGuiaAbas.addTab("Cadastro", painelCadastro);
@@ -298,8 +347,7 @@ public class FormCidade extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelNavegacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelGuiaAbas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelGuiaAbas))
         );
 
         bindingGroup.bind();
@@ -314,24 +362,23 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        listCidade.add(new Cidade());// instancia o objeto Cidade e cria uma linha na tabela
-        int linha = listCidade.size()-1;
-        tblCidade.setRowSelectionInterval(linha, linha);
-        txtCidade.requestFocus();
+        listPacientes.add(new Pacientes());// instancia o objeto Pacientes e cria uma linha na tabela
+        int linha = listPacientes.size()-1;
+        tblPacientes.setRowSelectionInterval(linha, linha);
+        txtNomePaciente.requestFocus();
         trataEdicao(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         if(validaCampos()){
-        int linhaSelecionada = tblCidade.getSelectedRow();
-        Cidade objCidade = listCidade.get(linhaSelecionada);
-        cidadeDao.salvar(objCidade);
+        int linhaSelecionada = tblPacientes.getSelectedRow();
+        Pacientes objPacientes = listPacientes.get(linhaSelecionada);
+        pacientesDao.salvar(objPacientes);
         atualizaTabela();
         trataEdicao(false);
-        }
     }//GEN-LAST:event_btnSalvarActionPerformed
-
+ }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         trataEdicao(false);
@@ -341,7 +388,7 @@ public class FormCidade extends javax.swing.JDialog {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         trataEdicao(true);
-        txtCidade.requestFocus();
+        txtNomePaciente.requestFocus();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -349,9 +396,9 @@ public class FormCidade extends javax.swing.JDialog {
         int opcao = JOptionPane.showOptionDialog(null, "Confirma a exclusão?", "Pergunta", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String []{"Sim","Não"},"Sim");
         if(opcao==0){
-        int linhaSelecionada = tblCidade.getSelectedRow();
-        Cidade objCidade = listCidade.get(linhaSelecionada);
-        cidadeDao.remover(objCidade);
+        int linhaSelecionada = tblPacientes.getSelectedRow();
+        Pacientes objPacientes = listPacientes.get(linhaSelecionada);
+        pacientesDao.remover(objPacientes);
         atualizaTabela();
         trataEdicao(false);
         }
@@ -359,37 +406,46 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         // TODO add your handling code here:
-        tblCidade.setRowSelectionInterval(0,0);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(0,0,true));
+        tblPacientes.setRowSelectionInterval(0, 0);
+        tblPacientes.scrollRectToVisible(tblPacientes.getCellRect(0, 0, true));
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
-        int linha =  tblCidade.getSelectedRow();
+        int linha = tblPacientes.getSelectedRow();
         if((linha-1)>=0){
             linha--;
         }
-        tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
+        tblPacientes.setRowSelectionInterval(linha, linha);
+        tblPacientes.scrollRectToVisible(tblPacientes.getCellRect(linha, 0, true));
+                                       
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblCidade.getSelectedRow();
-         if((linha+1)<=tblCidade.getRowCount()-1){
-             linha++;
-         }
-        tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
-        
+          int linha = tblPacientes.getSelectedRow();
+          if((linha+1)<=tblPacientes.getRowCount()-1){
+              linha++;
+          }
+         tblPacientes.setRowSelectionInterval(linha, linha);
+         tblPacientes.scrollRectToVisible(tblPacientes.getCellRect(linha, 0, true));
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblCidade.getRowCount()-1;
-         tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
+         int linha = tblPacientes.getRowCount()-1;
+         
+         tblPacientes.setRowSelectionInterval(linha, linha);
+         tblPacientes.scrollRectToVisible(tblPacientes.getCellRect(linha, 0, true));
     }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,20 +464,21 @@ public class FormCidade extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPacientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormCidade dialog = new FormCidade(new javax.swing.JFrame(), true);
+                FormPacientes dialog = new FormPacientes(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -444,20 +501,24 @@ public class FormCidade extends javax.swing.JDialog {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    private javax.swing.JComboBox<String> cbxUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<Cidade> listCidade;
+    private java.util.List<modelo.Pacientes> listPacientes;
     private javax.swing.JPanel painelAcoes;
     private javax.swing.JPanel painelCadastro;
     private javax.swing.JTabbedPane painelGuiaAbas;
     private javax.swing.JPanel painelListagem;
     private javax.swing.JPanel painelNavegacao;
-    private javax.swing.JTable tblCidade;
-    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTable tblPacientes;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNomePaciente;
+    private javax.swing.JTextField txtTelefone;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

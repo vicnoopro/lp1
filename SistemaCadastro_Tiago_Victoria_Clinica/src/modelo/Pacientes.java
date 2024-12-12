@@ -12,12 +12,11 @@ import java.util.Objects;
  *
  * @author tulio
  */
-public class Cidade implements Serializable{ // padrão java beans
+public class Pacientes implements Serializable{ // padrão java beans
     private Integer codigo;
-    private String nome,uf;
-    
+    private String nome, email, cpf, telefone;
 
-    public Cidade() { // padrão java beans
+    public Pacientes() { // padrão java beans
     }
 
     public Integer getCodigo() {
@@ -36,18 +35,36 @@ public class Cidade implements Serializable{ // padrão java beans
         this.nome = nome;
     }
 
-    public String getUf() {
-        return uf;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.codigo);
+        hash = 59 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -62,18 +79,11 @@ public class Cidade implements Serializable{ // padrão java beans
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final Pacientes other = (Pacientes) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return this.getNome();
-    }
-    
-    
 
 }

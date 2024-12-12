@@ -5,20 +5,19 @@
  */
 package modelo;
 
+//import java.beans.Transient;
 import java.io.Serializable;
+//import java.text.SimpleDateFormat;
+//import java.util.Calendar;
 import java.util.Objects;
 
 /**
  *
- * @author tulio
+ * @author 12968505602
  */
-public class Cidade implements Serializable{ // padrão java beans
+public class Receita implements Serializable{
     private Integer codigo;
-    private String nome,uf;
-    
-
-    public Cidade() { // padrão java beans
-    }
+    private String remediosPrescritos;
 
     public Integer getCodigo() {
         return codigo;
@@ -28,26 +27,18 @@ public class Cidade implements Serializable{ // padrão java beans
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getRemediosPrescritos() {
+        return remediosPrescritos;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setRemediosPrescritos(String remediosPrescritos) {
+        this.remediosPrescritos = remediosPrescritos;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.codigo);
+        hash = 47 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
@@ -62,18 +53,19 @@ public class Cidade implements Serializable{ // padrão java beans
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidade other = (Cidade) obj;
+        final Receita other = (Receita) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         return true;
     }
+    
 
-    @Override
-    public String toString() {
-        return this.getNome();
+ 
+    /*@Transient //não persiste em banco de dados
+    public String getNascimentoFormatado(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(nascimento.getTime());
     }
-    
-    
-
+    */
 }

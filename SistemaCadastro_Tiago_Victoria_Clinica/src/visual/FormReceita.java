@@ -7,23 +7,26 @@ package visual;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.Cidade;
-import modelo.CidadeDao;
+import modelo.PacientesDao;
+import modelo.Receita;
+import modelo.ReceitaDao;
 
 /**
  *
  * @author tulio
  */
-public class FormCidade extends javax.swing.JDialog {
-    CidadeDao cidadeDao = new CidadeDao();
+public class FormReceita extends javax.swing.JDialog {
+    ReceitaDao receitaDao = new ReceitaDao();
+    
+    PacientesDao cidadeDao = new PacientesDao();
     
     public void atualizaTabela(){
-        listCidade.clear();// limpa a lista
-        listCidade.addAll(cidadeDao.getLista());
-        int linha = listCidade.size()-1;
+        listReceita.clear();// limpa a lista
+        listReceita.addAll(receitaDao.getLista());
+        int linha = listReceita.size()-1;
         if(linha>=0){
-            tblCidade.setRowSelectionInterval(linha, linha);
-            tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha, linha, true));
+            tblReceita.setRowSelectionInterval(linha, linha);
+            tblReceita.scrollRectToVisible(tblReceita.getCellRect(linha, linha, true));
         }
         
     }
@@ -32,7 +35,7 @@ public class FormCidade extends javax.swing.JDialog {
         btnCancelar.setEnabled(editando);
         btnSalvar.setEnabled(editando);
         btnEditar.setEnabled(!editando);
-        int linha = listCidade.size()-1;
+        int linha = listReceita.size()-1;
         if(linha<0){
             btnPrimeiro.setEnabled(false);
             btnProximo.setEnabled(false);
@@ -40,7 +43,7 @@ public class FormCidade extends javax.swing.JDialog {
             btnUltimo.setEnabled(false);
             btnEditar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            txtCidade.setText("");
+            txtRemediosPrescritos.setText("");
             txtCodigo.setText("");
         }else{
             btnExcluir.setEnabled(!editando);
@@ -51,32 +54,31 @@ public class FormCidade extends javax.swing.JDialog {
         btnProximo.setEnabled(!editando);
         btnAnterior.setEnabled(!editando);
         btnUltimo.setEnabled(!editando);
-        txtCidade.setEnabled(editando);
-        cbxUf.setEnabled(editando);
-        tblCidade.setEnabled(editando);
+        txtRemediosPrescritos.setEnabled(editando);
+        tblReceita.setEnabled(editando);
+        txtCodigo.setEnabled(editando); 
     }
-
     public boolean validaCampos(){
-        if (!(txtCidade.getText().length()>0)){
-            JOptionPane.showMessageDialog(null,"Informe o nome da cidade: ");
-            txtCidade.requestFocus();
+        if(!(txtRemediosPrescritos.getText().length()>0)){
+            JOptionPane.showMessageDialog(null, "Informe o rémedio prescrito");
+            txtRemediosPrescritos.requestFocus();
             return false;
         }
-        if(!(cbxUf.getSelectedIndex()>=0)){
-            JOptionPane.showMessageDialog(null,"Informe a UF da cidade: ");
-        cbxUf.requestFocus();
-        return false;
-        }
         return true;
-    }
+    }//fim da valida campos
+    
+    
     /**
      * Creates new form FormCidade
      */
-    public FormCidade(java.awt.Frame parent, boolean modal) {
+    
+    public FormReceita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         atualizaTabela();
         trataEdicao(false);
+        listPaciente.clear();
+        listPaciente.addAll(cidadeDao.getLista());
     }
 
     /**
@@ -89,8 +91,9 @@ public class FormCidade extends javax.swing.JDialog {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        listCidade = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Cidade>())
-        ;
+        listReceita = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<Receita>())
+ ;
+        listPaciente = org.jdesktop.observablecollections.ObservableCollections.observableList(new ArrayList<modelo.Pacientes>())  ;
         painelNavegacao = new javax.swing.JPanel();
         btnPrimeiro = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
@@ -100,7 +103,7 @@ public class FormCidade extends javax.swing.JDialog {
         painelGuiaAbas = new javax.swing.JTabbedPane();
         painelListagem = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblCidade = new javax.swing.JTable();
+        tblReceita = new javax.swing.JTable();
         painelCadastro = new javax.swing.JPanel();
         painelAcoes = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -110,13 +113,11 @@ public class FormCidade extends javax.swing.JDialog {
         btnExcluir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtCidade = new javax.swing.JTextField();
-        cbxUf = new javax.swing.JComboBox<>();
+        txtRemediosPrescritos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Cidades");
+        setTitle("Cadastro de Receita");
 
         painelNavegacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
         painelNavegacao.setLayout(new java.awt.GridLayout(1, 0));
@@ -163,22 +164,16 @@ public class FormCidade extends javax.swing.JDialog {
 
         painelListagem.setLayout(new java.awt.BorderLayout());
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listCidade, tblCidade);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listReceita, tblReceita);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
-        columnBinding.setColumnName("Código");
+        columnBinding.setColumnName("Codigo");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
-        columnBinding.setColumnName("Nome");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${remediosPrescritos}"));
+        columnBinding.setColumnName("Remedios Prescritos");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uf}"));
-        columnBinding.setColumnName("Uf");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        jScrollPane1.setViewportView(tblCidade);
+        jScrollPane1.setViewportView(tblReceita);
 
         painelListagem.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -229,21 +224,14 @@ public class FormCidade extends javax.swing.JDialog {
 
         jLabel1.setText("Código:");
 
-        jLabel2.setText("Cidade:");
-
-        jLabel3.setText("UF:");
+        jLabel2.setText("Remédios Prescritos:");
 
         txtCodigo.setEditable(false);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblReceita, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.codigo}"), txtCodigo, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.nome}"), txtCidade, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblCidade, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.uf}"), cbxUf, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblReceita, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.remediosPrescritos}"), txtRemediosPrescritos, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
@@ -255,14 +243,11 @@ public class FormCidade extends javax.swing.JDialog {
                 .addGap(41, 41, 41)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1))
+                .addGap(54, 54, 54)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodigo))
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRemediosPrescritos, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelCadastroLayout.setVerticalGroup(
@@ -276,12 +261,8 @@ public class FormCidade extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cbxUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 181, Short.MAX_VALUE))
+                    .addComponent(txtRemediosPrescritos, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         painelGuiaAbas.addTab("Cadastro", painelCadastro);
@@ -298,8 +279,7 @@ public class FormCidade extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelNavegacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelGuiaAbas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelGuiaAbas, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -314,24 +294,23 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        listCidade.add(new Cidade());// instancia o objeto Cidade e cria uma linha na tabela
-        int linha = listCidade.size()-1;
-        tblCidade.setRowSelectionInterval(linha, linha);
-        txtCidade.requestFocus();
+        listReceita.add(new Receita());// instancia o objeto Pacientes e cria uma linha na tabela
+        int linha = listReceita.size()-1;
+        tblReceita.setRowSelectionInterval(linha, linha);
+        txtRemediosPrescritos.requestFocus();
         trataEdicao(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         if(validaCampos()){
-        int linhaSelecionada = tblCidade.getSelectedRow();
-        Cidade objCidade = listCidade.get(linhaSelecionada);
-        cidadeDao.salvar(objCidade);
+        int linhaSelecionada = tblReceita.getSelectedRow();
+        Receita objReceita = listReceita.get(linhaSelecionada);
+        receitaDao.salvar(objReceita);
         atualizaTabela();
         trataEdicao(false);
-        }
     }//GEN-LAST:event_btnSalvarActionPerformed
-
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         trataEdicao(false);
@@ -341,7 +320,7 @@ public class FormCidade extends javax.swing.JDialog {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
         trataEdicao(true);
-        txtCidade.requestFocus();
+        txtRemediosPrescritos.requestFocus();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -349,9 +328,9 @@ public class FormCidade extends javax.swing.JDialog {
         int opcao = JOptionPane.showOptionDialog(null, "Confirma a exclusão?", "Pergunta", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, new String []{"Sim","Não"},"Sim");
         if(opcao==0){
-        int linhaSelecionada = tblCidade.getSelectedRow();
-        Cidade objCidade = listCidade.get(linhaSelecionada);
-        cidadeDao.remover(objCidade);
+        int linhaSelecionada = tblReceita.getSelectedRow();
+        Receita objReceita = listReceita.get(linhaSelecionada);
+        receitaDao.remover(objReceita);
         atualizaTabela();
         trataEdicao(false);
         }
@@ -359,36 +338,37 @@ public class FormCidade extends javax.swing.JDialog {
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         // TODO add your handling code here:
-        tblCidade.setRowSelectionInterval(0,0);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(0,0,true));
+        tblReceita.setRowSelectionInterval(0, 0);
+        tblReceita.scrollRectToVisible(tblReceita.getCellRect(0, 0, true));
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
-        int linha =  tblCidade.getSelectedRow();
+        int linha = tblReceita.getSelectedRow();
         if((linha-1)>=0){
             linha--;
         }
-        tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
+        tblReceita.setRowSelectionInterval(linha, linha);
+        tblReceita.scrollRectToVisible(tblReceita.getCellRect(linha, 0, true));
+                                       
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblCidade.getSelectedRow();
-         if((linha+1)<=tblCidade.getRowCount()-1){
-             linha++;
-         }
-        tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
-        
+          int linha = tblReceita.getSelectedRow();
+          if((linha+1)<=tblReceita.getRowCount()-1){
+              linha++;
+          }
+         tblReceita.setRowSelectionInterval(linha, linha);
+         tblReceita.scrollRectToVisible(tblReceita.getCellRect(linha, 0, true));
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         // TODO add your handling code here:
-         int linha =  tblCidade.getRowCount()-1;
-         tblCidade.setRowSelectionInterval(linha,linha);
-        tblCidade.scrollRectToVisible(tblCidade.getCellRect(linha,0,true));
+         int linha = tblReceita.getRowCount()-1;
+         
+         tblReceita.setRowSelectionInterval(linha, linha);
+         tblReceita.scrollRectToVisible(tblReceita.getCellRect(linha, 0, true));
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     /**
@@ -408,20 +388,23 @@ public class FormCidade extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormCidade.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FormCidade dialog = new FormCidade(new javax.swing.JFrame(), true);
+                FormReceita dialog = new FormReceita(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -444,20 +427,19 @@ public class FormCidade extends javax.swing.JDialog {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    private javax.swing.JComboBox<String> cbxUf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.util.List<Cidade> listCidade;
+    private java.util.List<modelo.Pacientes> listPaciente;
+    private java.util.List<Receita> listReceita;
     private javax.swing.JPanel painelAcoes;
     private javax.swing.JPanel painelCadastro;
     private javax.swing.JTabbedPane painelGuiaAbas;
     private javax.swing.JPanel painelListagem;
     private javax.swing.JPanel painelNavegacao;
-    private javax.swing.JTable tblCidade;
-    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTable tblReceita;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtRemediosPrescritos;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
